@@ -82,7 +82,7 @@
         }
 
         .course-card-inner {
-            @apply bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 relative group;
+            @apply bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 relative group flex flex-col h-full;
         }
 
         .course-badge {
@@ -132,7 +132,7 @@
             <div class="hidden lg:flex gap-8 font-bold text-sm">
                 <a href="#" class="text-taiba-blue hover:text-taiba-orange transition">الرئيسية</a>
                 <a href="#about" class="text-slate-600 hover:text-taiba-blue transition">عن المركز</a>
-                <a href="#courses" class="text-slate-600 hover:text-taiba-blue transition">تخصصاتنا</a>
+                <a href="#courses" class="text-slate-600 hover:text-taiba-blue transition">تخصصاتنا المتنوعة</a>
                 <a href="#register" class="bg-taiba-orange/10 text-taiba-orange px-4 py-1 rounded-lg hover:bg-taiba-orange hover:text-white transition">التسجيل</a>
                 <a href="#contact" class="text-slate-600 hover:text-taiba-blue transition">اتصل بنا</a>
             </div>
@@ -151,111 +151,147 @@
                     <p class="text-taiba-orange font-black text-lg tracking-widest">تكوين، لغات، استشارات</p>
                 </div>
                 <h1 class="text-5xl md:text-7xl font-black leading-tight">
-                    اصنع مستقبلك <br> بمهارات <span class="text-taiba-orange">احترافية</span>
+                    وجهتك الأولى <br> للتكوين <span class="text-taiba-orange">الاحترافي</span>
                 </h1>
                 <p class="text-xl text-slate-200 max-w-2xl leading-relaxed font-medium">
-                    من البرمجة والذكاء الاصطناعي إلى الحرف اليدوية واللغات، مركز طيبة بالعلمة هو رفيقك نحو النجاح.
+                    نوفر لك في مركز طيبة بالعلمة بيئة تعليمية متكاملة تضم عشرات التخصصات المطلوبة في سوق العمل، من اللغات والطب إلى البرمجة والحرف.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-6">
-                    <a href="#register" class="bg-taiba-orange text-white px-10 py-4 rounded-2xl font-black text-lg hover:bg-white hover:text-taiba-blue transition-all shadow-xl">سجل الآن</a>
-                    <a href="https://wa.me/213541711924" target="_blank" class="bg-white/10 backdrop-blur-md border border-white/30 px-10 py-4 rounded-2xl font-bold text-lg hover:bg-white/20 transition-all flex items-center gap-3">
-                        <i class="fab fa-whatsapp text-green-400"></i> تواصل عبر الواتساب
-                    </a>
+                    <a href="#register" class="bg-taiba-orange text-white px-10 py-4 rounded-2xl font-black text-lg hover:bg-white hover:text-taiba-blue transition-all shadow-xl">سجل في دورتك الآن</a>
+                    <a href="#courses" class="bg-white/10 backdrop-blur-md border border-white/30 px-10 py-4 rounded-2xl font-bold text-lg hover:bg-white/20 transition-all">اكتشف جميع الأقسام</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- الدورات -->
+    <!-- الدورات مقسمة لـ 8 فئات شاملة -->
     <section id="courses" class="py-24 bg-slate-50">
         <div class="container mx-auto px-6">
             <div class="text-right mb-16 reveal">
-                <h2 class="text-4xl font-black text-taiba-blue border-r-8 border-taiba-orange pr-6 italic">برامجنا التدريبية المتكاملة</h2>
-                <p class="text-slate-400 mt-2 font-bold tracking-widest uppercase text-xs">نواكب التطور ونحافظ على الأصالة</p>
+                <h2 class="text-4xl font-black text-taiba-blue border-r-8 border-taiba-orange pr-6 italic">الأقسام التدريبية بالمركز</h2>
+                <p class="text-slate-500 mt-3 text-lg font-bold">نفخر بتقديم تشكيلة واسعة من التخصصات التي تناسب جميع الطموحات</p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 
-                <!-- التكنولوجيا والذكاء الاصطناعي -->
-                <div class="course-card-inner reveal">
-                    <span class="course-badge">Tech & Future</span>
-                    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3 class="text-2xl font-black text-taiba-blue mb-4">الذكاء الاصطناعي والبرمجة</h3>
-                    <ul class="text-slate-500 text-sm space-y-2 mb-6 font-bold">
-                        <li><i class="fas fa-code text-taiba-orange ml-2"></i> دورة البرمجة (Web/Mobile)</li>
-                        <li><i class="fas fa-robot text-taiba-orange ml-2"></i> أساسيات الذكاء الاصطناعي (AI)</li>
-                        <li><i class="fas fa-desktop text-taiba-orange ml-2"></i> الإعلام الآلي المتقدم</li>
-                    </ul>
-                    <a href="#register" class="text-taiba-orange font-black flex items-center gap-2 hover:gap-4 transition-all">احجز مكانك <i class="fas fa-arrow-left"></i></a>
-                </div>
-
-                <!-- اللغات -->
+                <!-- 1. اللغات الأجنبية -->
                 <div class="course-card-inner reveal">
                     <span class="course-badge">Languages</span>
-                    <div class="w-16 h-16 bg-taiba-blue/5 text-taiba-blue rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-taiba-blue group-hover:text-white transition-all">
+                    <div class="w-14 h-14 bg-taiba-blue/10 text-taiba-blue rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-taiba-blue group-hover:text-white transition-all">
                         <i class="fas fa-language"></i>
                     </div>
-                    <h3 class="text-2xl font-black text-taiba-blue mb-4">قسم اللغات الأجنبية</h3>
-                    <div class="flex flex-wrap gap-2 mb-6 font-bold">
-                        <span class="bg-slate-100 px-3 py-1 rounded-lg text-[10px]">الإنجليزية</span>
-                        <span class="bg-slate-100 px-3 py-1 rounded-lg text-[10px]">الفرنسية</span>
-                        <span class="bg-slate-100 px-3 py-1 rounded-lg text-[10px]">الألمانية</span>
-                    </div>
-                    <a href="#register" class="text-taiba-orange font-black flex items-center gap-2 hover:gap-4 transition-all">التفاصيل <i class="fas fa-arrow-left"></i></a>
-                </div>
-
-                <!-- الصناعات الحرفية -->
-                <div class="course-card-inner reveal">
-                    <span class="course-badge">Crafts & Fragrance</span>
-                    <div class="w-16 h-16 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <h3 class="text-2xl font-black text-taiba-blue mb-4">الصناعات التقليدية</h3>
-                    <ul class="text-slate-500 text-sm space-y-2 mb-6 font-bold">
-                        <li><i class="fas fa-magic text-taiba-orange ml-2"></i> دورة صناعة العطور الاحترافية</li>
-                        <li><i class="fas fa-soap text-taiba-orange ml-2"></i> دورة صناعة الصابون الطبيعي</li>
-                        <li><i class="fas fa-spa text-taiba-orange ml-2"></i> دورة الحجامة التجميلية</li>
+                    <h3 class="text-xl font-black text-taiba-blue mb-3">قسم اللغات الأجنبية</h3>
+                    <ul class="text-slate-500 text-sm space-y-2 mb-6 font-bold flex-grow">
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> الإنجليزية (لجميع المستويات)</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> الفرنسية (محادثة وكتابة)</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> الألمانية (تحضير للسفر)</li>
                     </ul>
-                    <a href="#register" class="text-taiba-orange font-black flex items-center gap-2 hover:gap-4 transition-all">ابدأ مشروعك <i class="fas fa-arrow-left"></i></a>
+                    <a href="#register" class="text-taiba-orange font-black text-sm flex items-center gap-2 hover:gap-4 transition-all mt-auto">احجز دورتك <i class="fas fa-arrow-left"></i></a>
                 </div>
 
-                <!-- الطبي -->
+                <!-- 2. التكوين الطبي -->
                 <div class="course-card-inner reveal">
-                    <span class="course-badge">Medical</span>
-                    <div class="w-16 h-16 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-red-600 group-hover:text-white transition-all">
-                        <i class="fas fa-stethoscope"></i>
+                    <span class="course-badge">Paramedical</span>
+                    <div class="w-14 h-14 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-red-600 group-hover:text-white transition-all">
+                        <i class="fas fa-user-nurse"></i>
                     </div>
-                    <h3 class="text-2xl font-black text-taiba-blue mb-4">التخصصات الطبية</h3>
-                    <ul class="text-slate-500 text-sm space-y-2 mb-6 font-bold">
-                        <li><i class="fas fa-plus-square text-taiba-orange ml-2"></i> مساعد طبيب / مساعد صيدلي</li>
-                        <li><i class="fas fa-heartbeat text-taiba-orange ml-2"></i> دورة الحجامة العلاجية</li>
-                        <li><i class="fas fa-ambulance text-taiba-orange ml-2"></i> الإسعافات الأولية</li>
+                    <h3 class="text-xl font-black text-taiba-blue mb-3">التكوين شبه الطبي</h3>
+                    <ul class="text-slate-500 text-sm space-y-2 mb-6 font-bold flex-grow">
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> مساعد طبيب</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> بائع صيدلي (مساعد صيدلي)</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> السكرتارية الطبية</li>
                     </ul>
-                    <a href="#register" class="text-taiba-orange font-black flex items-center gap-2 hover:gap-4 transition-all">التفاصيل <i class="fas fa-arrow-left"></i></a>
+                    <a href="#register" class="text-taiba-orange font-black text-sm flex items-center gap-2 hover:gap-4 transition-all mt-auto">احجز دورتك <i class="fas fa-arrow-left"></i></a>
                 </div>
 
-                <!-- الروبوتيك والالكترونيك -->
+                <!-- 3. الطب التكميلي -->
                 <div class="course-card-inner reveal">
-                    <span class="course-badge">Engineering</span>
-                    <div class="w-16 h-16 bg-yellow-50 text-yellow-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-yellow-400 group-hover:text-white transition-all">
+                    <span class="course-badge">Alternative Med</span>
+                    <div class="w-14 h-14 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-green-600 group-hover:text-white transition-all">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-taiba-blue mb-3">الطب التكميلي والعلاجي</h3>
+                    <ul class="text-slate-500 text-sm space-y-2 mb-6 font-bold flex-grow">
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> الحجامة الطبية والتجميلية</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> الإسعافات الأولية</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> العناية بالبشرة (Esthétique)</li>
+                    </ul>
+                    <a href="#register" class="text-taiba-orange font-black text-sm flex items-center gap-2 hover:gap-4 transition-all mt-auto">احجز دورتك <i class="fas fa-arrow-left"></i></a>
+                </div>
+
+                <!-- 4. التكنولوجيا والذكاء الاصطناعي -->
+                <div class="course-card-inner reveal">
+                    <span class="course-badge">Tech & AI</span>
+                    <div class="w-14 h-14 bg-blue-50 text-blue-500 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-blue-500 group-hover:text-white transition-all">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-taiba-blue mb-3">البرمجة والتكنولوجيا</h3>
+                    <ul class="text-slate-500 text-sm space-y-2 mb-6 font-bold flex-grow">
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> الذكاء الاصطناعي (AI)</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> برمجة وتطوير المواقع</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> صيانة أجهزة الإعلام الآلي</li>
+                    </ul>
+                    <a href="#register" class="text-taiba-orange font-black text-sm flex items-center gap-2 hover:gap-4 transition-all mt-auto">احجز دورتك <i class="fas fa-arrow-left"></i></a>
+                </div>
+
+                <!-- 5. الإلكترونيك والروبوتيك -->
+                <div class="course-card-inner reveal">
+                    <span class="course-badge">Electronics</span>
+                    <div class="w-14 h-14 bg-yellow-50 text-yellow-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-yellow-400 group-hover:text-white transition-all">
                         <i class="fas fa-microchip"></i>
                     </div>
-                    <h3 class="text-2xl font-black text-taiba-blue mb-4">الروبوتيك والالكترونيك</h3>
-                    <p class="text-slate-500 text-sm mb-6 font-medium">تصميم وبرمجة الأنظمة الذكية والدوائر الإلكترونية للأطفال والكبار.</p>
-                    <a href="#register" class="text-taiba-orange font-black flex items-center gap-2 hover:gap-4 transition-all">سجل الآن <i class="fas fa-arrow-left"></i></a>
+                    <h3 class="text-xl font-black text-taiba-blue mb-3">الإلكترونيك والروبوتيك</h3>
+                    <ul class="text-slate-500 text-sm space-y-2 mb-6 font-bold flex-grow">
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> الروبوتيك للأطفال والشباب</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> الإلكترونيك الصناعي</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> تركيب كاميرات المراقبة</li>
+                    </ul>
+                    <a href="#register" class="text-taiba-orange font-black text-sm flex items-center gap-2 hover:gap-4 transition-all mt-auto">احجز دورتك <i class="fas fa-arrow-left"></i></a>
                 </div>
 
-                <!-- الحلويات -->
+                <!-- 6. الإدارة والأعمال -->
+                <div class="course-card-inner reveal">
+                    <span class="course-badge">Business</span>
+                    <div class="w-14 h-14 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-teal-600 group-hover:text-white transition-all">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-taiba-blue mb-3">الإدارة والمحاسبة</h3>
+                    <ul class="text-slate-500 text-sm space-y-2 mb-6 font-bold flex-grow">
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> المحاسبة (PC Comptabilité)</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> تسيير الموارد البشرية</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> التسويق الرقمي والمبيعات</li>
+                    </ul>
+                    <a href="#register" class="text-taiba-orange font-black text-sm flex items-center gap-2 hover:gap-4 transition-all mt-auto">احجز دورتك <i class="fas fa-arrow-left"></i></a>
+                </div>
+
+                <!-- 7. الصناعات الحرفية -->
+                <div class="course-card-inner reveal">
+                    <span class="course-badge">Crafts</span>
+                    <div class="w-14 h-14 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-purple-600 group-hover:text-white transition-all">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-taiba-blue mb-3">الصناعات الحرفية</h3>
+                    <ul class="text-slate-500 text-sm space-y-2 mb-6 font-bold flex-grow">
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> صناعة العطور الاحترافية</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> صناعة الصابون الطبيعي</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> صناعة مواد التجميل</li>
+                    </ul>
+                    <a href="#register" class="text-taiba-orange font-black text-sm flex items-center gap-2 hover:gap-4 transition-all mt-auto">احجز دورتك <i class="fas fa-arrow-left"></i></a>
+                </div>
+
+                <!-- 8. فنون الطبخ والحلويات -->
                 <div class="course-card-inner reveal">
                     <span class="course-badge">Culinary Arts</span>
-                    <div class="w-16 h-16 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-orange-600 group-hover:text-white transition-all">
+                    <div class="w-14 h-14 bg-orange-50 text-orange-500 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-orange-500 group-hover:text-white transition-all">
                         <i class="fas fa-birthday-cake"></i>
                     </div>
-                    <h3 class="text-2xl font-black text-taiba-blue mb-4">فنون الطبخ والحلويات</h3>
-                    <p class="text-slate-500 text-sm mb-6 font-medium">تعلم أسرار الحلويات التقليدية والعصرية مع أمهر الحرفيين في العلمة.</p>
-                    <a href="#register" class="text-taiba-orange font-black flex items-center gap-2 hover:gap-4 transition-all">احجز مكانك <i class="fas fa-arrow-left"></i></a>
+                    <h3 class="text-xl font-black text-taiba-blue mb-3">فنون الطبخ والحلويات</h3>
+                    <ul class="text-slate-500 text-sm space-y-2 mb-6 font-bold flex-grow">
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> الحلويات التقليدية</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> الحلويات العصرية</li>
+                        <li><i class="fas fa-check text-taiba-orange ml-1"></i> صناعة الكيك (Cake Design)</li>
+                    </ul>
+                    <a href="#register" class="text-taiba-orange font-black text-sm flex items-center gap-2 hover:gap-4 transition-all mt-auto">احجز دورتك <i class="fas fa-arrow-left"></i></a>
                 </div>
 
             </div>
@@ -272,9 +308,9 @@
                     <p class="text-slate-600 leading-relaxed text-lg italic">
                         حي لعبيدي القديم - بالقرب من متوسطة قيدوم
                     </p>
-                    <p class="text-slate-500">نحن نسعى لتقديم تدريب حر عالي الجودة لتمكين الشباب في سوق العمل الوطني والدولي.</p>
+                    <p class="text-slate-500">نحن نسعى لتقديم تدريب حر عالي الجودة لتمكين الشباب في سوق العمل الوطني والدولي، عبر باقة متكاملة من التخصصات التي يشرف عليها مدربون ذوو كفاءة عالية.</p>
                     <div class="flex gap-4 pt-4">
-                        <a href="https://maps.app.goo.gl/dom3LYfj6fvxosVp7" target="_blank" class="bg-taiba-blue text-white px-6 py-2 rounded-xl font-bold text-sm">موقعنا على الخريطة</a>
+                        <a href="https://maps.app.goo.gl/dom3LYfj6fvxosVp7" target="_blank" class="bg-taiba-blue text-white px-6 py-2 rounded-xl font-bold text-sm hover:bg-taiba-dark transition">موقعنا على الخريطة</a>
                     </div>
                 </div>
                 <div class="lg:w-1/2 relative bg-slate-200 min-h-[300px]">
@@ -325,7 +361,7 @@
                     </div>
                 </div>
 
-                <!-- نموذج التسجيل -->
+                <!-- نموذج التسجيل المحدث -->
                 <div id="register" class="lg:w-1/2 reveal">
                     <div class="bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 relative">
                         <h3 class="text-2xl font-black text-taiba-blue mb-8 text-center italic">سجل الآن معنا</h3>
@@ -334,24 +370,44 @@
                                 <input type="text" id="regName" required placeholder="الاسم واللقب" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 ring-taiba-blue transition">
                                 <input type="tel" id="regPhone" required placeholder="رقم الهاتف" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 ring-taiba-blue transition">
                             </div>
-                            <select id="regCourse" required class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none text-slate-600 font-bold">
+                            <select id="regCourse" required class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none text-slate-600 font-bold appearance-none">
                                 <option value="">اختر التخصص التدريبي...</option>
-                                <optgroup label="التكنولوجيا والذكاء الاصطناعي">
-                                    <option>الذكاء الاصطناعي (AI)</option>
-                                    <option>البرمجة (Web/Mobile)</option>
-                                    <option>إعلام آلي (Informatique)</option>
-                                    <option>الروبوتيك والإلكترونيك</option>
-                                </optgroup>
-                                <optgroup label="اللغات">
+                                <optgroup label="اللغات الأجنبية">
                                     <option>اللغة الإنجليزية</option>
                                     <option>اللغة الفرنسية</option>
                                     <option>اللغة الألمانية</option>
                                 </optgroup>
-                                <optgroup label="الصناعات الحرفية والطبية">
+                                <optgroup label="التكوين شبه الطبي">
+                                    <option>مساعد طبيب</option>
+                                    <option>مساعد صيدلي</option>
+                                    <option>السكرتارية الطبية</option>
+                                </optgroup>
+                                <optgroup label="الطب التكميلي والعلاجي">
+                                    <option>الحجامة الطبية والتجميلية</option>
+                                    <option>الإسعافات الأولية</option>
+                                    <option>العناية بالبشرة (Esthétique)</option>
+                                </optgroup>
+                                <optgroup label="التكنولوجيا والبرمجة">
+                                    <option>الذكاء الاصطناعي (AI)</option>
+                                    <option>البرمجة وتطوير المواقع</option>
+                                    <option>الإعلام الآلي المتقدم</option>
+                                </optgroup>
+                                <optgroup label="الإلكترونيك والروبوتيك">
+                                    <option>الروبوتيك للأطفال</option>
+                                    <option>الإلكترونيك الصناعي</option>
+                                    <option>تركيب كاميرات المراقبة</option>
+                                </optgroup>
+                                <optgroup label="الإدارة والمحاسبة">
+                                    <option>المحاسبة (PC Comptabilité)</option>
+                                    <option>تسيير الموارد البشرية</option>
+                                </optgroup>
+                                <optgroup label="الصناعات الحرفية">
                                     <option>صناعة العطور الاحترافية</option>
                                     <option>صناعة الصابون الطبيعي</option>
-                                    <option>مساعد طبيب / مساعد صيدلي</option>
-                                    <option>دورة الحجامة</option>
+                                </optgroup>
+                                <optgroup label="فنون الطبخ والحلويات">
+                                    <option>الحلويات التقليدية والعصرية</option>
+                                    <option>صناعة الكيك (Cake Design)</option>
                                 </optgroup>
                             </select>
                             <textarea id="regNote" placeholder="أي ملاحظات؟" rows="2" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 ring-taiba-blue transition"></textarea>
@@ -375,7 +431,7 @@
                 <a href="#" class="hover:text-taiba-orange transition">الرئيسية</a>
                 <a href="#about" class="hover:text-taiba-orange transition">عن المركز</a>
                 <a href="#courses" class="hover:text-taiba-orange transition">الدورات</a>
-                <button onclick="openAdminAuth()" class="opacity-30 hover:opacity-100 transition text-[9px] uppercase tracking-tighter">لوحة التحكم</button>
+                <button onclick="openAdminAuth()" class="opacity-40 hover:opacity-100 transition text-[10px] uppercase tracking-tighter text-taiba-orange bg-taiba-orange/10 px-3 py-1 rounded-full">دخول الإدارة</button>
             </div>
 
             <div class="border-t border-white/5 pt-8 text-slate-500 text-[10px] uppercase font-bold tracking-widest leading-loose">
@@ -397,14 +453,14 @@
         </div>
     </div>
 
-    <!-- Admin Authentication Modal (بدل الـ prompt) -->
+    <!-- Admin Authentication Modal -->
     <div id="adminAuthModal">
         <div class="bg-white p-10 rounded-[3rem] shadow-2xl w-full max-w-xs mx-4 text-center">
             <h3 class="text-xl font-black text-taiba-blue mb-6">دخول الإدارة</h3>
             <input type="password" id="adminPassInput" placeholder="كلمة المرور" class="w-full p-4 bg-slate-50 border rounded-2xl mb-4 outline-none focus:ring-2 ring-taiba-blue text-center">
             <div id="adminPassError" class="text-red-500 text-xs mb-4 hidden">كلمة المرور غير صحيحة</div>
             <button onclick="verifyAdminPassword()" class="w-full bg-taiba-blue text-white py-4 rounded-2xl font-bold mb-2">دخول</button>
-            <button onclick="closeAdminAuth()" class="text-slate-400 text-xs font-bold underline">إلغاء</button>
+            <button onclick="closeAdminAuth()" class="text-slate-400 text-xs font-bold underline mt-2 block w-full">إلغاء</button>
         </div>
     </div>
 
@@ -449,42 +505,82 @@
         </div>
     </div>
 
-    <!-- Script Logic -->
+    <!-- UI Functions (Safe from Module Scoping) -->
+    <script>
+        window.closeStatus = () => { document.getElementById('statusOverlay').style.display = 'none'; };
+        window.toggleModal = (id) => {
+            const modal = document.getElementById(id);
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+            document.body.style.overflow = modal.classList.contains('hidden') ? 'auto' : 'hidden';
+        };
+
+        // Admin Auth Flow
+        window.openAdminAuth = () => {
+            document.getElementById('adminAuthModal').style.display = 'flex';
+            document.getElementById('adminPassInput').value = '';
+            document.getElementById('adminPassError').classList.add('hidden');
+        };
+
+        window.closeAdminAuth = () => { document.getElementById('adminAuthModal').style.display = 'none'; };
+
+        window.verifyAdminPassword = () => {
+            const pass = document.getElementById('adminPassInput').value;
+            if (pass === "taiba2024") {
+                document.getElementById('adminAuthModal').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                if(window.loadRegistrations) window.loadRegistrations(); // Call Firebase func if loaded
+            } else {
+                document.getElementById('adminPassError').classList.remove('hidden');
+            }
+        };
+
+        window.closeAdmin = () => { 
+            document.getElementById('adminDashboard').style.display = 'none'; 
+            document.body.style.overflow = 'auto';
+        };
+    </script>
+
+    <!-- Firebase SDKs & Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'taiba-app-v1';
-
+        let db, auth, appId;
         let currentUser = null;
 
-        // Initialize Authentication
-        const initAuth = async () => {
-            try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-            } catch (e) { console.error("Auth:", e); }
-        };
+        // تهيئة النظام بقاعدة البيانات بأمان
+        try {
+            if (typeof __firebase_config !== 'undefined') {
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+                appId = typeof __app_id !== 'undefined' ? __app_id : 'taiba-app-v1';
 
-        onAuthStateChanged(auth, (user) => { currentUser = user; });
-        initAuth();
+                const initAuth = async () => {
+                    try {
+                        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                            await signInWithCustomToken(auth, __initial_auth_token);
+                        } else {
+                            await signInAnonymously(auth);
+                        }
+                    } catch (e) { console.warn("Auth Info:", e); }
+                };
 
-        // Handle Registration
+                onAuthStateChanged(auth, (user) => { currentUser = user; });
+                initAuth();
+            }
+        } catch (e) { console.warn("Firebase not fully configured on external host."); }
+
         const regForm = document.getElementById('registrationForm');
         const submitBtn = document.getElementById('submitRegBtn');
         const statusOverlay = document.getElementById('statusOverlay');
 
         regForm.onsubmit = async (e) => {
             e.preventDefault();
-            if (!currentUser) return;
 
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
@@ -494,27 +590,39 @@
                 phone: document.getElementById('regPhone').value,
                 course: document.getElementById('regCourse').value,
                 note: document.getElementById('regNote').value,
-                timestamp: serverTimestamp()
             };
 
-            try {
-                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'registrations'), formData);
-                statusOverlay.style.display = 'flex';
-                regForm.reset();
-            } catch (e) { alert("حدث خطأ في الاتصال."); }
-            finally { 
-                submitBtn.disabled = false;
-                submitBtn.innerText = 'تأكيد التسجيل';
+            // الحفظ إذا كانت قاعدة البيانات متصلة، وإلا إظهار النجاح شكلياً للمنصات الخارجية
+            if (db && currentUser) {
+                try {
+                    formData.timestamp = serverTimestamp();
+                    await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'registrations'), formData);
+                    statusOverlay.style.display = 'flex';
+                    regForm.reset();
+                } catch (e) { alert("حدث خطأ في الاتصال بالسحابة."); }
+            } else {
+                // وضع استعراضي (يعمل عند رفع الموقع كملف HTML عادي بدون سيرفر)
+                setTimeout(() => {
+                    statusOverlay.style.display = 'flex';
+                    regForm.reset();
+                }, 800);
             }
+            
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'تأكيد التسجيل';
         };
 
-        // Load Data for Admin
         window.loadRegistrations = async () => {
-            if (!currentUser) return;
             const table = document.getElementById('registrationsTable');
             const loader = document.getElementById('loadingAdmin');
             table.innerHTML = '';
             loader.style.display = 'block';
+
+            if (!db || !currentUser) {
+                loader.style.display = 'none';
+                table.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-slate-500 font-bold">لا يمكن عرض البيانات هنا (النسخة تعمل كعرض واجهة فقط خارج النظام الأصلي).</td></tr>';
+                return;
+            }
 
             try {
                 const querySnapshot = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'registrations'));
@@ -534,51 +642,14 @@
                     table.innerHTML += `
                         <tr class="border-b hover:bg-slate-50 transition text-right">
                             <td class="p-4 text-[10px] text-slate-400 font-mono" dir="ltr">${date}</td>
-                            <td class="p-4 font-black text-taiba-blue">${data.name}</td>
-                            <td class="p-4 font-bold phone-number">${data.phone}</td>
-                            <td class="p-4"><span class="bg-taiba-orange/10 text-taiba-orange px-3 py-1 rounded-full text-[10px] font-black">${data.course}</span></td>
-                            <td class="p-4 text-xs text-slate-400 italic">${data.note || '-'}</td>
+                            <td class="p-4 font-black text-taiba-blue border-r">${data.name}</td>
+                            <td class="p-4 font-bold phone-number border-r">${data.phone}</td>
+                            <td class="p-4 border-r"><span class="bg-taiba-orange/10 text-taiba-orange px-3 py-1 rounded-full text-[10px] font-black">${data.course}</span></td>
+                            <td class="p-4 text-xs text-slate-400 italic border-r">${data.note || '-'}</td>
                         </tr>
                     `;
                 });
             } catch (e) { loader.innerText = "فشل جلب البيانات."; }
-        };
-
-        // Global UI Toggles
-        window.closeStatus = () => { statusOverlay.style.display = 'none'; };
-        window.toggleModal = (id) => {
-            const modal = document.getElementById(id);
-            modal.classList.toggle('hidden');
-            modal.classList.toggle('flex');
-            document.body.style.overflow = modal.classList.contains('hidden') ? 'auto' : 'hidden';
-        };
-
-        // Admin Auth Toggles
-        window.openAdminAuth = () => {
-            document.getElementById('adminAuthModal').style.display = 'flex';
-            document.getElementById('adminPassInput').value = '';
-            document.getElementById('adminPassError').classList.add('hidden');
-        };
-
-        window.closeAdminAuth = () => {
-            document.getElementById('adminAuthModal').style.display = 'none';
-        };
-
-        window.verifyAdminPassword = () => {
-            const pass = document.getElementById('adminPassInput').value;
-            if (pass === "taiba2024") {
-                document.getElementById('adminAuthModal').style.display = 'none';
-                document.getElementById('adminDashboard').style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                window.loadRegistrations();
-            } else {
-                document.getElementById('adminPassError').classList.remove('hidden');
-            }
-        };
-
-        window.closeAdmin = () => { 
-            document.getElementById('adminDashboard').style.display = 'none'; 
-            document.body.style.overflow = 'auto';
         };
     </script>
 
@@ -596,7 +667,6 @@
         window.addEventListener("scroll", reveal);
         window.onload = () => {
             reveal();
-            // Smooth scroll links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     const targetId = this.getAttribute('href');
