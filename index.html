@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مركز طيبة للتدريب | التميز في التدريب</title>
+    <title>مركز طيبة للتدريب العلمة | التميز في التدريب</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome للمساندة في الأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
@@ -15,11 +14,11 @@
             overflow-x: hidden;
         }
 
-        /* أنيميشن مخصص مشابه لموقع Clinic */
+        /* أنيميشن الظهور السلس عند التمرير */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1);
         }
 
         .reveal.active {
@@ -27,319 +26,470 @@
             transform: translateY(0);
         }
 
+        /* تأثير الروابط في القائمة العلوي */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
         .nav-link::after {
             content: '';
-            display: block;
+            position: absolute;
             width: 0;
             height: 2px;
-            background: #1e3a8a;
-            transition: width .3s;
+            bottom: -4px;
+            right: 0;
+            background-color: #fbbf24;
+            transition: width 0.3s ease;
         }
         .nav-link:hover::after {
             width: 100%;
         }
 
-        .hero-gradient {
-            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.85)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80');
+        .hero-section {
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
+                        url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
         }
 
-        .feature-card:hover i {
-            transform: scale(1.2) rotate(10deg);
-            transition: all 0.3s ease;
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .course-badge {
+            @apply absolute top-4 left-4 bg-blue-900 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg;
+        }
+
+        /* Success Message Overlay */
+        #statusOverlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
-<body class="bg-white">
+<body class="bg-white text-slate-900">
 
-    <!-- Top Bar -->
-    <div class="bg-blue-900 text-white py-2 hidden md:block border-b border-blue-800">
-        <div class="container mx-auto px-6 flex justify-between items-center text-sm">
-            <div class="flex gap-6">
-                <span><i class="fas fa-envelope ml-2 text-yellow-400"></i> contact@taiba-center.dz</span>
-                <span><i class="fas fa-phone ml-2 text-yellow-400"></i> +213 21 00 00 00</span>
+    <!-- شريط الاتصال العلوي -->
+    <div class="bg-slate-900 text-white py-2 hidden md:block border-b border-slate-800">
+        <div class="container mx-auto px-6 flex justify-between items-center text-xs">
+            <div class="flex gap-6 font-medium">
+                <span><i class="fas fa-phone-alt ml-2 text-yellow-400"></i> +213 (0) 541 711 924</span>
+                <span><i class="fas fa-map-marker-alt ml-2 text-yellow-400"></i> العلمة - حي لعبيدي القديم (بالقرب من متوسطة قيدوم)</span>
             </div>
             <div class="flex gap-4">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-yellow-400 transition">Facebook <i class="fab fa-facebook-f mr-1"></i></a>
+                <a href="#" class="hover:text-yellow-400 transition">Instagram <i class="fab fa-instagram mr-1"></i></a>
             </div>
         </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="sticky top-0 bg-white/95 backdrop-blur-md shadow-md z-50">
+    <!-- القائمة الرئيسية -->
+    <nav class="sticky top-0 bg-white/95 backdrop-blur-md shadow-sm z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-blue-900 rounded-lg flex items-center justify-center text-white font-bold text-2xl shadow-lg">ط</div>
-                <span class="text-2xl font-black text-blue-900 tracking-tight">مركز طيبة</span>
+                <div class="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg font-bold italic">TTC</div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-black text-blue-900 leading-none">مركز طيبة</span>
+                    <span class="text-[10px] text-yellow-600 font-bold uppercase tracking-wider italic">مركز تدريب حر - العلمة</span>
+                </div>
             </div>
             
-            <div class="hidden md:flex gap-8 font-bold text-gray-700">
+            <div class="hidden lg:flex gap-8 font-bold">
                 <a href="#" class="nav-link text-blue-900">الرئيسية</a>
-                <a href="#about" class="nav-link">عن المركز</a>
-                <a href="#courses" class="nav-link">الدورات</a>
-                <a href="#register" class="nav-link">التسجيل</a>
-                <a href="#contact" class="nav-link">اتصل بنا</a>
+                <a href="#about" class="nav-link text-slate-600 hover:text-blue-900">من نحن</a>
+                <a href="#courses" class="nav-link text-slate-600 hover:text-blue-900">الدورات المتاحة</a>
+                <a href="#register" class="nav-link text-slate-600 hover:text-blue-900">التسجيل</a>
+                <a href="#contact" class="nav-link text-slate-600 hover:text-blue-900">اتصل بنا</a>
             </div>
 
-            <button onclick="openModal('login')" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-bold transition-all shadow-md">
+            <button onclick="toggleModal('authModal')" class="bg-blue-900 hover:bg-blue-800 text-white px-7 py-2.5 rounded-full font-bold transition-all shadow-md active:scale-95">
                 دخول المتدربين
             </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-gradient min-h-[85vh] flex items-center text-white">
-        <div class="container mx-auto px-6 py-20">
-            <div class="max-w-3xl space-y-8 reveal active">
-                <h6 class="text-yellow-400 font-bold tracking-widest uppercase border-r-4 border-yellow-400 pr-4">مستقبلك يبدأ هنا</h6>
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">تدريب احترافي <br> <span class="text-blue-200">بمعايير عالمية</span></h1>
-                <p class="text-xl text-blue-100 leading-relaxed max-w-xl">
-                    نحن نساعدك على تطوير مهاراتك التقنية والإدارية من خلال برامج تدريبية مكثفة يقدمها خبراء في مختلف المجالات.
+    <!-- واجهة الترحيب (Hero) -->
+    <section class="hero-section min-h-[85vh] flex items-center text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl space-y-8 reveal active text-right">
+                <span class="bg-yellow-400/20 text-yellow-400 px-5 py-1.5 rounded-full text-sm font-black border border-yellow-400/30">التميز في التدريب الحر - العلمة</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
+                    استثمر في مستقبلك <br> بمهارات <span class="text-yellow-400">عالمية</span>
+                </h1>
+                <p class="text-xl text-slate-300 max-w-2xl leading-relaxed">
+                    نحن في مركز طيبة للتدريب بالعلمة نوفر لك تخصصات متنوعة تشمل اللغات، الطب، التكنولوجيا، وفنون الطبخ، بإشراف مدربين محترفين.
                 </p>
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#register" class="bg-white text-blue-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition shadow-xl">سجل الآن</a>
-                    <a href="#courses" class="border-2 border-white/50 hover:border-white px-10 py-4 rounded-full font-bold text-lg transition">استكشف الدورات</a>
+                <div class="flex flex-wrap gap-5 pt-4">
+                    <a href="#register" class="bg-yellow-400 text-blue-900 px-10 py-4 rounded-xl font-black text-lg hover:bg-yellow-300 transition-all shadow-[0_0_20px_rgba(251,191,36,0.3)]">احجز دورتك الآن</a>
+                    <a href="#courses" class="bg-white/10 backdrop-blur-md border border-white/20 px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all">دليل التخصصات</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Quick Stats -->
-    <section class="py-12 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="flex items-center gap-4 reveal">
-                    <i class="fas fa-user-graduate text-4xl text-blue-600"></i>
-                    <div>
-                        <h3 class="text-2xl font-bold text-blue-900">+5,000</h3>
-                        <p class="text-gray-500">متدرب ناجح</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-4 reveal">
-                    <i class="fas fa-chalkboard-teacher text-4xl text-blue-600"></i>
-                    <div>
-                        <h3 class="text-2xl font-bold text-blue-900">25</h3>
-                        <p class="text-gray-500">مدرب خبير</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-4 reveal">
-                    <i class="fas fa-award text-4xl text-blue-600"></i>
-                    <div>
-                        <h3 class="text-2xl font-bold text-blue-900">100%</h3>
-                        <p class="text-gray-500">شهادات معتمدة</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-4 reveal">
-                    <i class="fas fa-laptop-code text-4xl text-blue-600"></i>
-                    <div>
-                        <h3 class="text-2xl font-bold text-blue-900">40+</h3>
-                        <p class="text-gray-500">دورة تدريبية</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
+    <!-- نبذة عن المركز -->
     <section id="about" class="py-24">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center gap-16">
-                <div class="md:w-1/2 reveal">
-                    <div class="relative">
-                        <div class="w-full h-[500px] bg-gray-200 rounded-2xl overflow-hidden shadow-2xl">
-                             <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Training" class="w-full h-full object-cover">
+        <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
+            <div class="lg:w-1/2 reveal">
+                <div class="bg-blue-50 p-10 rounded-[3rem] border-r-8 border-blue-900 shadow-xl">
+                    <h6 class="text-blue-900 font-black uppercase tracking-widest mb-4">مركز تدريب حر</h6>
+                    <h2 class="text-4xl font-extrabold text-slate-900 mb-6 italic">خبرة واسعة في تكوين الكفاءات بالعلمة</h2>
+                    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                        يعد مركز طيبة بالعلمة وجهتكم المفضلة للتكوين المتخصص. نحن نقع في قلب العلمة بـ "حي لعبيدي القديم"، ونسعى جاهدين لتوفير بيئة تعليمية محفزة تساعدكم على التفوق في مجالاتكم المختارة.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-green-500"></i>
+                            <span class="font-bold text-slate-700">تطبيق عملي 100%</span>
                         </div>
-                        <div class="absolute -bottom-8 -left-8 bg-blue-600 p-8 rounded-2xl text-white shadow-xl hidden lg:block">
-                            <span class="text-5xl font-bold">3</span>
-                            <p class="text-sm">سنوات من الخبرة <br> في التدريب</p>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-green-500"></i>
+                            <span class="font-bold text-slate-700">معدات حديثة</span>
                         </div>
                     </div>
                 </div>
-                <div class="md:w-1/2 space-y-6 reveal">
-                    <h6 class="text-blue-600 font-bold uppercase tracking-widest">من نحن</h6>
-                    <h2 class="text-4xl font-bold text-blue-900">مركز طيبة.. بيئة تعليمية محفزة للابتكار والنجاح</h2>
-                    <p class="text-gray-600 leading-relaxed text-lg">
-                        منذ انطلاقتنا، وهدفنا هو سد الفجوة بين التعليم الأكاديمي ومتطلبات سوق العمل الحالية. نحن لا نقدم دروساً فقط، بل نقدم تجربة عملية متكاملة تضمن للمتدرب القدرة على المنافسة في السوق المحلي والدولي.
-                    </p>
-                    <div class="grid grid-cols-2 gap-6 pt-4">
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                            <div>
-                                <h4 class="font-bold">مناهج حديثة</h4>
-                                <p class="text-sm text-gray-500">تُحدث دورياً لتواكب التقنيات.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                            <div>
-                                <h4 class="font-bold">دعم مهني</h4>
-                                <p class="text-sm text-gray-500">توجيه وظيفي بعد التخرج.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="bg-blue-900 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-blue-800 transition">اكتشف المزيد</button>
+            </div>
+            <div class="lg:w-1/2 reveal">
+                <div class="rounded-[2.5rem] overflow-hidden shadow-2xl h-[400px]">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="قاعات التدريب" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Courses Section (Services) -->
-    <section id="courses" class="py-24 bg-gray-50">
+    <!-- الدورات المتوفرة (قائمة شاملة) -->
+    <section id="courses" class="py-24 bg-slate-50">
         <div class="container mx-auto px-6">
-            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-                <h6 class="text-blue-600 font-bold uppercase tracking-widest mb-2">دوراتنا التخصصية</h6>
-                <h2 class="text-4xl font-bold text-blue-900">استثمر في نفسك واختر مسارك المهني</h2>
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <h6 class="text-yellow-600 font-black uppercase tracking-widest mb-2">استكشف برامجنا</h6>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-blue-900">باقة متنوعة من الدورات التدريبية</h2>
+                <div class="w-24 h-1.5 bg-blue-900 mx-auto mt-6 rounded-full"></div>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Course 1 -->
-                <div class="bg-white p-10 rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 feature-card reveal">
-                    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-8">
-                        <i class="fas fa-code"></i>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <!-- اللغات -->
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-100 reveal card-hover relative">
+                    <span class="course-badge">Languages</span>
+                    <div class="w-16 h-16 bg-blue-50 text-blue-900 rounded-2xl flex items-center justify-center text-3xl mb-8">
+                        <i class="fas fa-language"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-blue-900 mb-4">هندسة البرمجيات</h3>
-                    <p class="text-gray-600 leading-relaxed mb-6">تعلم أساسيات البرمجة وصولاً لبناء تطبيقات متكاملة باستخدام أحدث اللغات والأطر البرمجية.</p>
-                    <a href="#" class="text-blue-600 font-bold hover:underline">عرض التفاصيل ←</a>
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">اللغات الأجنبية</h3>
+                    <ul class="space-y-3 text-slate-500 font-medium mb-8">
+                        <li><i class="fas fa-check text-yellow-500 ml-2"></i> اللغة الفرنسية</li>
+                        <li><i class="fas fa-check text-yellow-500 ml-2"></i> اللغة الإنجليزية</li>
+                        <li><i class="fas fa-check text-yellow-500 ml-2"></i> اللغة الألمانية</li>
+                    </ul>
+                    <a href="#register" class="text-blue-900 font-black hover:gap-4 flex items-center gap-2 transition-all underline">سجل الآن <i class="fas fa-arrow-left text-xs"></i></a>
                 </div>
-                <!-- Course 2 -->
-                <div class="bg-white p-10 rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 feature-card reveal">
-                    <div class="w-16 h-16 bg-yellow-50 text-yellow-600 rounded-2xl flex items-center justify-center text-3xl mb-8">
-                        <i class="fas fa-brain"></i>
+
+                <!-- الطبية 1 -->
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-100 reveal card-hover relative">
+                    <span class="course-badge">Medical</span>
+                    <div class="w-16 h-16 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center text-3xl mb-8">
+                        <i class="fas fa-user-md"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-blue-900 mb-4">الذكاء الاصطناعي</h3>
-                    <p class="text-gray-600 leading-relaxed mb-6">اكتشف عالم تعلم الآلة ومعالجة البيانات وبناء نماذج ذكية تدعم اتخاذ القرارات.</p>
-                    <a href="#" class="text-blue-600 font-bold hover:underline">عرض التفاصيل ←</a>
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">التكوين شبه الطبي</h3>
+                    <ul class="space-y-3 text-slate-500 font-medium mb-8">
+                        <li><i class="fas fa-check text-yellow-500 ml-2"></i> مساعد طبيب</li>
+                        <li><i class="fas fa-check text-yellow-500 ml-2"></i> مساعد صيدلي</li>
+                        <li><i class="fas fa-check text-yellow-500 ml-2"></i> دورات طبية متخصصة</li>
+                    </ul>
+                    <a href="#register" class="text-blue-900 font-black hover:gap-4 flex items-center gap-2 transition-all underline">سجل الآن <i class="fas fa-arrow-left text-xs"></i></a>
                 </div>
-                <!-- Course 3 -->
-                <div class="bg-white p-10 rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 feature-card reveal">
+
+                <!-- الطبية 2 -->
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-100 reveal card-hover relative">
+                    <span class="course-badge">Traditional Medicine</span>
                     <div class="w-16 h-16 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center text-3xl mb-8">
-                        <i class="fas fa-bullhorn"></i>
+                        <i class="fas fa-leaf"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-blue-900 mb-4">التسويق الرقمي</h3>
-                    <p class="text-gray-600 leading-relaxed mb-6">احترف إدارة الحملات الإعلانية، تحسين محركات البحث، وصناعة المحتوى الإبداعي.</p>
-                    <a href="#" class="text-blue-600 font-bold hover:underline">عرض التفاصيل ←</a>
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">الطب التكميلي</h3>
+                    <ul class="space-y-3 text-slate-500 font-medium mb-8">
+                        <li><i class="fas fa-check text-yellow-500 ml-2"></i> دورة الحجامة</li>
+                        <li><i class="fas fa-check text-yellow-500 ml-2"></i> الإسعافات الأولية</li>
+                    </ul>
+                    <a href="#register" class="text-blue-900 font-black hover:gap-4 flex items-center gap-2 transition-all underline">سجل الآن <i class="fas fa-arrow-left text-xs"></i></a>
+                </div>
+
+                <!-- التكنولوجيا -->
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-100 reveal card-hover relative">
+                    <span class="course-badge">Tech & IT</span>
+                    <div class="w-16 h-16 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center text-3xl mb-8">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">التقنية والابتكار</h3>
+                    <ul class="space-y-3 text-slate-500 font-medium mb-8">
+                        <li><i class="fas fa-check text-yellow-500 ml-2"></i> إعلام آلي</li>
+                        <li><i class="fas fa-check text-yellow-500 ml-2"></i> إلكترونيك</li>
+                        <li><i class="fas fa-check text-yellow-500 ml-2"></i> روبوتيك</li>
+                    </ul>
+                    <a href="#register" class="text-blue-900 font-black hover:gap-4 flex items-center gap-2 transition-all underline">سجل الآن <i class="fas fa-arrow-left text-xs"></i></a>
+                </div>
+
+                <!-- الحلويات -->
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-100 reveal card-hover relative">
+                    <span class="course-badge">Culinary Arts</span>
+                    <div class="w-16 h-16 bg-yellow-50 text-yellow-600 rounded-2xl flex items-center justify-center text-3xl mb-8">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">فنون الطبخ</h3>
+                    <ul class="space-y-3 text-slate-500 font-medium mb-8">
+                        <li><i class="fas fa-check text-yellow-500 ml-2"></i> دورة الحلويات</li>
+                        <li><i class="fas fa-check text-yellow-500 ml-2"></i> الحلويات التقليدية والعصرية</li>
+                    </ul>
+                    <a href="#register" class="text-blue-900 font-black hover:gap-4 flex items-center gap-2 transition-all underline">سجل الآن <i class="fas fa-arrow-left text-xs"></i></a>
+                </div>
+
+                <!-- قسم إضافي للتواصل السريع -->
+                <div class="bg-blue-900 p-10 rounded-[2.5rem] shadow-2xl flex flex-col justify-center items-center text-center text-white reveal">
+                    <h3 class="text-2xl font-bold mb-4 italic text-yellow-400">تحتاج استشارة؟</h3>
+                    <p class="text-blue-100 mb-6 text-sm">اتصل بنا مباشرة للحصول على تفاصيل التوقيت والأسعار لكل دورة.</p>
+                    <a href="tel:0541711924" class="bg-white text-blue-900 px-8 py-3 rounded-xl font-black text-lg hover:bg-yellow-400 transition-all">0541 711 924</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Registration Section (Like Clinic Appointment) -->
-    <section id="register" class="py-24 bg-blue-900 text-white relative overflow-hidden">
-        <div class="container mx-auto px-6 relative z-10">
+    <!-- معلومات الاتصال والموقع -->
+    <section id="contact" class="py-24">
+        <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row gap-16">
-                <div class="lg:w-1/2 space-y-8 reveal">
-                    <h2 class="text-4xl font-bold">احجز مقعدك الآن في الدفعة القادمة</h2>
-                    <p class="text-blue-200 text-lg">
-                        المقاعد محدودة لضمان جودة التدريب. املأ النموذج وسيقوم مستشارنا التدريبي بالتواصل معك خلال 24 ساعة لتحديد المسار الأنسب لك.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center"><i class="fas fa-phone"></i></div>
+                <div class="lg:w-1/2 reveal">
+                    <h2 class="text-4xl font-black text-blue-900 mb-10 italic">تفضل بزيارتنا في العلمة</h2>
+                    
+                    <div class="space-y-10">
+                        <div class="flex gap-6 items-start">
+                            <div class="w-14 h-14 bg-blue-50 text-blue-900 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0 shadow-md">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
                             <div>
-                                <p class="text-blue-300 text-sm">للاتصال السريع</p>
-                                <p class="font-bold text-xl">+213 541 711 924</p>
+                                <h4 class="font-bold text-xl text-slate-800 mb-2">العنوان بالتفصيل</h4>
+                                <p class="text-slate-500 leading-relaxed text-lg">
+                                    العلمة، حي لعبيدي القديم <br> 
+                                    <span class="text-blue-900 font-bold">بالقرب من متوسطة قيدوم</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 items-start">
+                            <div class="w-14 h-14 bg-yellow-50 text-yellow-600 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0 shadow-md">
+                                <i class="fas fa-phone-volume"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl text-slate-800 mb-2">رقم الهاتف الرسمي</h4>
+                                <p class="text-blue-900 font-black text-3xl tracking-wider">0541 711 924</p>
+                                <p class="text-slate-400 text-sm italic mt-1 font-medium">نحن متاحون للرد على استفساراتكم طوال اليوم</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 items-start">
+                            <div class="w-14 h-14 bg-slate-50 text-slate-800 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0 shadow-md">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl text-slate-800 mb-2">أوقات العمل</h4>
+                                <p class="text-slate-500 leading-relaxed font-medium">السبت - الخميس: 08:30 صباحاً - 17:30 مساءً</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="lg:w-1/2 reveal">
-                    <form class="bg-white p-8 md:p-12 rounded-3xl text-gray-900 shadow-2xl space-y-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <input type="text" placeholder="الاسم الكامل" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500">
-                            <input type="email" placeholder="البريد الإلكتروني" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500">
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <input type="text" placeholder="رقم الهاتف" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500">
-                            <select class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 text-gray-500">
-                                <option>اختر الدورة</option>
-                                <option>هندسة البرمجيات</option>
-                                <option>الذكاء الاصطناعي</option>
-                                <option>التسويق الرقمي</option>
+
+                <!-- نموذج التسجيل المباشر -->
+                <div id="register" class="lg:w-1/2 reveal">
+                    <div class="bg-white p-12 rounded-[3rem] shadow-2xl border border-slate-100 relative">
+                        <div class="absolute -top-6 right-10 bg-yellow-400 text-blue-900 px-6 py-2 rounded-full font-black text-sm shadow-xl">تسجيل أولي</div>
+                        <h3 class="text-2xl font-black text-blue-900 mb-8 text-center">أرسل معلوماتك وسنتصل بك</h3>
+                        <form id="registrationForm" class="space-y-5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <input type="text" id="regName" required placeholder="الاسم واللقب" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 ring-blue-900 outline-none transition">
+                                <input type="tel" id="regPhone" required placeholder="رقم الهاتف" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 ring-blue-900 outline-none transition">
+                            </div>
+                            <select id="regCourse" required class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 ring-blue-900 outline-none text-slate-600 font-bold transition">
+                                <option value="">اختر الدورة المطلوبة...</option>
+                                <optgroup label="اللغات">
+                                    <option>اللغة الإنجليزية</option>
+                                    <option>اللغة الفرنسية</option>
+                                    <option>اللغة الألمانية</option>
+                                </optgroup>
+                                <optgroup label="الطبية">
+                                    <option>مساعد طبيب</option>
+                                    <option>مساعد صيدلي</option>
+                                    <option>دورة الحجامة</option>
+                                    <option>دورات طبية أخرى</option>
+                                </optgroup>
+                                <optgroup label="التقنية">
+                                    <option>إعلام آلي</option>
+                                    <option>إلكترونيك</option>
+                                    <option>روبوتيك</option>
+                                </optgroup>
+                                <optgroup label="أخرى">
+                                    <option>دورة الحلويات</option>
+                                </optgroup>
                             </select>
-                        </div>
-                        <textarea placeholder="رسالة إضافية (اختياري)" rows="4" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500"></textarea>
-                        <button class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg">إرسال طلب التسجيل</button>
-                    </form>
+                            <textarea id="regNote" placeholder="رسالة إضافية أو ملاحظات" rows="3" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 ring-blue-900 outline-none transition"></textarea>
+                            <button type="submit" id="submitRegBtn" class="w-full bg-blue-900 text-white py-5 rounded-2xl font-black text-xl hover:bg-slate-800 transition-all shadow-xl active:scale-95">تأكيد طلب التسجيل</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Decorative Circle -->
-        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-800 rounded-full opacity-50"></div>
     </section>
 
-    <!-- Site Map & Footer -->
-    <footer id="sitemap" class="bg-gray-100 pt-20 pb-10">
-        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-gray-200 pb-16">
-            <div class="space-y-6">
-                <div class="flex items-center gap-2">
-                    <div class="w-10 h-10 bg-blue-900 rounded flex items-center justify-center text-white font-bold text-xl">ط</div>
-                    <span class="text-2xl font-bold text-blue-900">مركز طيبة</span>
-                </div>
-                <p class="text-gray-500">نحن شريكك الموثوق في رحلة التعلم المستمر والتحول الرقمي في الجزائر.</p>
-                <div class="flex gap-4">
-                    <a href="#" class="text-blue-900 text-xl"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-blue-900 text-xl"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-blue-900 text-xl"><i class="fab fa-linkedin"></i></a>
+    <!-- التذييل -->
+    <footer id="sitemap" class="bg-slate-900 text-white pt-24 pb-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex flex-col items-center gap-6 mb-16">
+                <div class="w-20 h-20 bg-white text-blue-900 rounded-2xl flex items-center justify-center font-bold text-4xl shadow-2xl">ط</div>
+                <div>
+                    <h2 class="text-3xl font-black">مركز طيبة للتدريب - العلمة</h2>
+                    <p class="text-slate-500 mt-2 font-medium tracking-widest italic uppercase text-xs">التميز في التدريب الحر هو شعارنا</p>
                 </div>
             </div>
             
-            <div>
-                <h4 class="text-blue-900 font-bold mb-6">الدورات</h4>
-                <ul class="space-y-3 text-gray-500">
-                    <li><a href="#" class="hover:text-blue-600 transition">تطوير الويب</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition">تطبيقات الموبايل</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition">الأمن السيبراني</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition">تحليل البيانات</a></li>
-                </ul>
+            <div class="flex flex-wrap justify-center gap-x-12 gap-y-6 mb-16 text-slate-400 font-bold">
+                <a href="#" class="hover:text-yellow-400 transition">الرئيسية</a>
+                <a href="#about" class="hover:text-yellow-400 transition">من نحن</a>
+                <a href="#courses" class="hover:text-yellow-400 transition">الدورات</a>
+                <a href="#contact" class="hover:text-yellow-400 transition">اتصل بنا</a>
+                <a href="#" class="hover:text-yellow-400 transition">سياسة الخصوصية</a>
             </div>
 
-            <div>
-                <h4 class="text-blue-900 font-bold mb-6">خريطة الموقع</h4>
-                <ul class="space-y-3 text-gray-500">
-                    <li><a href="#" class="hover:text-blue-600 transition">عن المركز</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition">المقالات والمدونة</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition">الأسئلة الشائعة</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition">تواصل معنا</a></li>
-                </ul>
+            <div class="flex justify-center gap-6 mb-12">
+                <a href="#" class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-blue-900 transition shadow-lg"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-blue-900 transition shadow-lg"><i class="fab fa-instagram"></i></a>
             </div>
 
-            <div>
-                <h4 class="text-blue-900 font-bold mb-6">النشرة البريدية</h4>
-                <p class="text-sm text-gray-500 mb-4">اشترك ليصلك جديد الدورات والخصومات.</p>
-                <div class="flex">
-                    <input type="email" placeholder="بريدك.." class="p-3 w-full bg-white border-r rounded-r-xl outline-none">
-                    <button class="bg-blue-900 text-white px-4 rounded-l-xl"><i class="fas fa-paper-plane"></i></button>
-                </div>
+            <div class="border-t border-white/5 pt-10 text-slate-600 text-[11px] tracking-widest uppercase font-bold">
+                &copy; 2024 مركز طيبة للتدريب العلمة - حي لعبيدي القديم. <br> جميع الحقوق محفوظة. هاتف: 0541 711 924
             </div>
-        </div>
-        <div class="container mx-auto px-6 mt-8 text-center text-gray-400 text-sm">
-            © 2024 مركز طيبة للتدريب. تم التصميم باحترافية.
         </div>
     </footer>
 
-    <!-- Auth Modal (Hidden by default) -->
+    <!-- نافذة دخول المتدربين -->
     <div id="authModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal()"></div>
-        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl relative z-10 overflow-hidden">
-            <div class="p-8">
-                <div class="text-center mb-8">
-                    <h3 class="text-2xl font-bold text-blue-900">تسجيل الدخول</h3>
-                    <p class="text-gray-500">مرحباً بك مجدداً في منصة التدريب</p>
-                </div>
-                <form class="space-y-4">
-                    <input type="email" placeholder="البريد الإلكتروني" class="w-full p-4 border rounded-xl outline-none focus:border-blue-500">
-                    <input type="password" placeholder="كلمة المرور" class="w-full p-4 border rounded-xl outline-none focus:border-blue-500">
-                    <button class="w-full bg-blue-900 text-white py-4 rounded-xl font-bold shadow-lg">دخول</button>
-                </form>
+        <div class="absolute inset-0 bg-slate-900/95 backdrop-blur-md" onclick="toggleModal('authModal')"></div>
+        <div class="bg-white w-full max-w-md rounded-[3rem] shadow-2xl relative z-10 p-12 reveal">
+            <div class="text-center mb-10">
+                <div class="w-16 h-16 bg-blue-900 rounded-2xl flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4">ط</div>
+                <h3 class="text-2xl font-black text-blue-900 italic">فضاء المتدرب</h3>
+                <p class="text-slate-400 text-sm mt-2">يرجى إدخال بيانات الولوج الخاصة بك</p>
             </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="اسم المستخدم" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 ring-blue-900">
+                <input type="password" placeholder="كلمة المرور" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 ring-blue-900">
+                <button class="w-full bg-blue-900 text-white py-5 rounded-2xl font-black shadow-xl hover:bg-slate-800 transition">تسجيل الدخول</button>
+            </form>
         </div>
     </div>
 
+    <!-- Status Overlay -->
+    <div id="statusOverlay">
+        <div class="bg-white p-12 rounded-[3rem] shadow-2xl text-center max-w-sm mx-4">
+            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-black text-blue-900 mb-2">تم الإرسال بنجاح!</h3>
+            <p class="text-slate-500 mb-8">شكراً لك، سنتصل بك قريباً لتأكيد تسجيلك في الدورة.</p>
+            <button onclick="closeStatus()" class="w-full bg-blue-900 text-white py-4 rounded-2xl font-black">حسناً</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Firebase Configuration from environment
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        let currentUser = null;
+
+        // Auth initialization
+        const initAuth = async () => {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            } catch (error) {
+                console.error("Auth failed:", error);
+            }
+        };
+
+        onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+        });
+
+        initAuth();
+
+        // Handle Registration Form Submission
+        const regForm = document.getElementById('registrationForm');
+        const submitBtn = document.getElementById('submitRegBtn');
+        const statusOverlay = document.getElementById('statusOverlay');
+
+        regForm.onsubmit = async (e) => {
+            e.preventDefault();
+            if (!currentUser) {
+                alert("يرجى الانتظار حتى يتم تحميل النظام...");
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
+
+            const formData = {
+                name: document.getElementById('regName').value,
+                phone: document.getElementById('regPhone').value,
+                course: document.getElementById('regCourse').value,
+                note: document.getElementById('regNote').value,
+                timestamp: serverTimestamp()
+            };
+
+            try {
+                // Save to Firestore following RULE 1
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'registrations'), formData);
+                
+                // Success
+                statusOverlay.style.display = 'flex';
+                regForm.reset();
+            } catch (error) {
+                console.error("Error saving data:", error);
+                alert("حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'تأكيد طلب التسجيل';
+            }
+        };
+
+        window.closeStatus = () => {
+            statusOverlay.style.display = 'none';
+        };
+
+        window.toggleModal = (id) => {
+            const modal = document.getElementById(id);
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+            document.body.style.overflow = modal.classList.contains('hidden') ? 'auto' : 'hidden';
+        };
+    </script>
+
     <script>
-        // أنيميشن التمرير (Reveal on Scroll)
+        // أنيميشن الظهور عند التمرير
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -353,26 +503,21 @@
         }
 
         window.addEventListener("scroll", reveal);
-
-        // تشغيل الأنيميشن عند التحميل
         window.onload = function() {
             reveal();
-        }
-
-        // التحكم في المودال
-        function openModal(id) {
-            const modal = document.getElementById('authModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('authModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = 'auto';
-        }
+            // التمرير السلس للروابط
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        };
     </script>
 </body>
 </html>
