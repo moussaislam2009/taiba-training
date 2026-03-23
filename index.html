@@ -551,14 +551,32 @@
         let db, auth, appId;
         let currentUser = null;
 
+        // 1. ضع إعدادات مشروع Firebase الخاص بك هنا ليعمل الموقع على Netlify (اختياري)
+        const myFirebaseConfig = {
+            apiKey: "AIzaSyAMUah0azJkDq7HlgAULLZjbYeyynPjdJQ",
+            authDomain: "taiba-center-eleulma.firebaseapp.com",
+            projectId: "taiba-center-eleulma",
+            storageBucket: "taiba-center-eleulma.firebasestorage.app",
+            messagingSenderId: "73414331375",
+            appId: "1:73414331375:web:4149f59d95449e2d9cc41a",
+            measurementId: "G-VG41RL30KN"
+        };
+
         // تهيئة النظام بقاعدة البيانات بأمان
         try {
+            let configToUse;
             if (typeof __firebase_config !== 'undefined') {
-                const firebaseConfig = JSON.parse(__firebase_config);
-                const app = initializeApp(firebaseConfig);
+                configToUse = JSON.parse(__firebase_config);
+                appId = typeof __app_id !== 'undefined' ? __app_id : 'taiba-app-v1';
+            } else if (myFirebaseConfig.apiKey) {
+                configToUse = myFirebaseConfig;
+                appId = 'taiba-app-v1';
+            }
+
+            if (configToUse) {
+                const app = initializeApp(configToUse);
                 auth = getAuth(app);
                 db = getFirestore(app);
-                appId = typeof __app_id !== 'undefined' ? __app_id : 'taiba-app-v1';
 
                 const initAuth = async () => {
                     try {
@@ -573,7 +591,7 @@
                 onAuthStateChanged(auth, (user) => { currentUser = user; });
                 initAuth();
             }
-        } catch (e) { console.warn("Firebase not fully configured on external host."); }
+        } catch (e) { console.warn("Firebase not fully configured."); }
 
         const regForm = document.getElementById('registrationForm');
         const submitBtn = document.getElementById('submitRegBtn');
@@ -618,9 +636,9 @@
             table.innerHTML = '';
             loader.style.display = 'block';
 
-            if (!db || !currentUser) {
+            if (!db || (!currentUser && typeof __firebase_config === 'undefined')) {
                 loader.style.display = 'none';
-                table.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-slate-500 font-bold">لا يمكن عرض البيانات هنا (النسخة تعمل كعرض واجهة فقط خارج النظام الأصلي).</td></tr>';
+                table.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-slate-500 font-bold leading-loose">عذراً، لوحة الإدارة هذه غير متصلة بقاعدة بيانات.<br>لربطها، يرجى قراءة (الخيار الثاني) في رسالة الشات أو تغيير النموذج ليرسل البيانات للإيميل مباشرة.</td></tr>';
                 return;
             }
 
