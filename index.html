@@ -61,7 +61,7 @@
             display: inline-block;
         }
 
-        #statusOverlay {
+        #statusOverlay, #adminAuthModal {
             display: none;
             position: fixed;
             inset: 0;
@@ -83,6 +83,10 @@
 
         .course-card-inner {
             @apply bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 relative group;
+        }
+
+        .course-badge {
+            @apply absolute top-4 left-4 bg-taiba-blue text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg;
         }
     </style>
 </head>
@@ -162,7 +166,7 @@
         </div>
     </section>
 
-    <!-- الدورات (التحديث الجديد ليشمل الدورات المطلوبة) -->
+    <!-- الدورات -->
     <section id="courses" class="py-24 bg-slate-50">
         <div class="container mx-auto px-6">
             <div class="text-right mb-16 reveal">
@@ -172,7 +176,7 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <!-- التكنولوجيا والذكاء الاصطناعي (محدث) -->
+                <!-- التكنولوجيا والذكاء الاصطناعي -->
                 <div class="course-card-inner reveal">
                     <span class="course-badge">Tech & Future</span>
                     <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
@@ -202,7 +206,7 @@
                     <a href="#register" class="text-taiba-orange font-black flex items-center gap-2 hover:gap-4 transition-all">التفاصيل <i class="fas fa-arrow-left"></i></a>
                 </div>
 
-                <!-- الصناعات الحرفية (جديد: عطور وصابون) -->
+                <!-- الصناعات الحرفية -->
                 <div class="course-card-inner reveal">
                     <span class="course-badge">Crafts & Fragrance</span>
                     <div class="w-16 h-16 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all">
@@ -258,8 +262,30 @@
         </div>
     </section>
 
-    <!-- التسجيل والاتصال (تحديث خيارات التسجيل) -->
-    <section id="contact" class="py-24">
+    <!-- معلومات المركز -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="bg-white rounded-[3rem] shadow-xl overflow-hidden flex flex-col lg:flex-row reveal">
+                <div class="lg:w-1/2 p-12 md:p-16 space-y-6 text-right">
+                    <h6 class="text-taiba-orange font-black uppercase">من نحن؟</h6>
+                    <h2 class="text-4xl font-black text-taiba-blue leading-snug">مركز طيبة للتدريب واللغات والاستشارات - العلمة</h2>
+                    <p class="text-slate-600 leading-relaxed text-lg italic">
+                        حي لعبيدي القديم - بالقرب من متوسطة قيدوم
+                    </p>
+                    <p class="text-slate-500">نحن نسعى لتقديم تدريب حر عالي الجودة لتمكين الشباب في سوق العمل الوطني والدولي.</p>
+                    <div class="flex gap-4 pt-4">
+                        <a href="https://maps.app.goo.gl/dom3LYfj6fvxosVp7" target="_blank" class="bg-taiba-blue text-white px-6 py-2 rounded-xl font-bold text-sm">موقعنا على الخريطة</a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 relative bg-slate-200 min-h-[300px]">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" alt="قاعات التدريب" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- نموذج التسجيل والاتصال -->
+    <section id="contact" class="py-24 bg-slate-50">
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row gap-12">
                 <!-- معلومات الاتصال -->
@@ -272,9 +298,8 @@
                                 <i class="fas fa-map-pin"></i>
                             </div>
                             <div>
-                                <h4 class="font-black text-slate-800">المقر الرئيسي بالعلمة</h4>
-                                <p class="text-slate-500 text-sm">حي لعبيدي القديم - بالقرب من متوسطة قيدوم</p>
-                                <a href="https://maps.app.goo.gl/dom3LYfj6fvxosVp7" target="_blank" class="text-taiba-blue font-bold text-xs underline mt-1 inline-block hover:text-taiba-orange">عرض الاتجاهات على الخريطة</a>
+                                <h4 class="font-black text-slate-800">المقر الرئيسي</h4>
+                                <p class="text-slate-500 text-sm">حي لعبيدي القديم - العلمة</p>
                             </div>
                         </div>
 
@@ -283,8 +308,8 @@
                                 <i class="fab fa-whatsapp"></i>
                             </div>
                             <div>
-                                <h4 class="font-black text-slate-800">تواصل مباشر (واتساب)</h4>
-                                <a href="https://wa.me/213541711924" target="_blank" class="text-taiba-blue font-black text-2xl phone-number hover:text-green-600 transition tracking-tighter">0541 711 924</a>
+                                <h4 class="font-black text-slate-800">واتساب</h4>
+                                <p class="text-taiba-blue font-black text-2xl phone-number tracking-tighter">0541 711 924</p>
                             </div>
                         </div>
 
@@ -293,29 +318,23 @@
                                 <i class="fas fa-envelope-open"></i>
                             </div>
                             <div>
-                                <h4 class="font-black text-slate-800">البريد الإلكتروني الرسمي</h4>
-                                <p class="text-slate-500 text-sm">taiba.eleulma@gmail.com</p>
+                                <h4 class="font-black text-slate-800">البريد الإلكتروني</h4>
+                                <p class="text-slate-500 text-sm underline font-bold">taiba.eleulma@gmail.com</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- خريطة قوقل المدمجة (اختياري) -->
-                    <div class="mt-10 rounded-3xl overflow-hidden shadow-lg border border-slate-200 grayscale-[30%] hover:grayscale-0 transition duration-500 h-48 bg-slate-200 flex items-center justify-center">
-                        <span class="text-slate-400 font-bold italic">[Image of Google Map location]</span>
-                    </div>
                 </div>
 
-                <!-- نموذج التسجيل المحدث -->
+                <!-- نموذج التسجيل -->
                 <div id="register" class="lg:w-1/2 reveal">
-                    <div class="bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 relative overflow-hidden">
-                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-taiba-orange/10 rounded-full blur-2xl"></div>
-                        <h3 class="text-2xl font-black text-taiba-blue mb-8 text-center italic">طلب تسجيل أولي</h3>
-                        <form id="registrationForm" class="space-y-4 relative z-10">
+                    <div class="bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 relative">
+                        <h3 class="text-2xl font-black text-taiba-blue mb-8 text-center italic">سجل الآن معنا</h3>
+                        <form id="registrationForm" class="space-y-4">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <input type="text" id="regName" required placeholder="الاسم واللقب" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 ring-taiba-blue transition">
                                 <input type="tel" id="regPhone" required placeholder="رقم الهاتف" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 ring-taiba-blue transition">
                             </div>
-                            <select id="regCourse" required class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none text-slate-600 font-bold appearance-none">
+                            <select id="regCourse" required class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none text-slate-600 font-bold">
                                 <option value="">اختر التخصص التدريبي...</option>
                                 <optgroup label="التكنولوجيا والذكاء الاصطناعي">
                                     <option>الذكاء الاصطناعي (AI)</option>
@@ -334,12 +353,9 @@
                                     <option>مساعد طبيب / مساعد صيدلي</option>
                                     <option>دورة الحجامة</option>
                                 </optgroup>
-                                <optgroup label="أخرى">
-                                    <option>دورة الحلويات</option>
-                                </optgroup>
                             </select>
-                            <textarea id="regNote" placeholder="هل لديك أي استفسار آخر؟" rows="2" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 ring-taiba-blue transition"></textarea>
-                            <button type="submit" id="submitRegBtn" class="w-full bg-taiba-blue text-white py-5 rounded-2xl font-black text-xl hover:bg-taiba-orange transition-all shadow-xl active:scale-95">إرسال طلب التسجيل</button>
+                            <textarea id="regNote" placeholder="أي ملاحظات؟" rows="2" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 ring-taiba-blue transition"></textarea>
+                            <button type="submit" id="submitRegBtn" class="w-full bg-taiba-blue text-white py-5 rounded-2xl font-black text-xl hover:bg-taiba-orange transition-all shadow-xl">تأكيد التسجيل</button>
                         </form>
                     </div>
                 </div>
@@ -350,86 +366,90 @@
     <!-- التذييل -->
     <footer class="bg-taiba-dark text-white pt-20 pb-10">
         <div class="container mx-auto px-6 text-center">
-            <div class="flex flex-col items-center gap-4 mb-12">
-                <div class="logo-box">
-                    <span class="text-4xl font-black text-white">طـيـبـة</span>
-                    <span class="text-[11px] font-black text-taiba-orange uppercase tracking-widest mt-1">للتدريب واللغات والاستشارات</span>
-                </div>
-                <p class="text-slate-400 max-w-sm mx-auto text-sm mt-4">نحن في العلمة منذ سنوات، نصنع الكفاءات ونبني المستقبل بأيادٍ جزائرية ماهرة.</p>
+            <div class="logo-box mb-8">
+                <span class="text-4xl font-black text-white">طـيـبـة</span>
+                <span class="text-[11px] font-black text-taiba-orange uppercase tracking-widest mt-1">للتدريب واللغات والاستشارات</span>
             </div>
             
             <div class="flex flex-wrap justify-center gap-x-12 gap-y-4 mb-10 text-slate-300 font-bold text-sm">
                 <a href="#" class="hover:text-taiba-orange transition">الرئيسية</a>
-                <a href="#about" class="hover:text-taiba-orange transition">من نحن</a>
+                <a href="#about" class="hover:text-taiba-orange transition">عن المركز</a>
                 <a href="#courses" class="hover:text-taiba-orange transition">الدورات</a>
-                <a href="https://maps.app.goo.gl/dom3LYfj6fvxosVp7" target="_blank" class="hover:text-taiba-orange transition">خريطة الموقع</a>
-                <button onclick="accessAdmin()" class="opacity-20 hover:opacity-100 transition text-[9px] uppercase tracking-tighter">لوحة الإدارة (للمسؤول)</button>
+                <button onclick="openAdminAuth()" class="opacity-30 hover:opacity-100 transition text-[9px] uppercase tracking-tighter">لوحة التحكم</button>
             </div>
 
             <div class="border-t border-white/5 pt-8 text-slate-500 text-[10px] uppercase font-bold tracking-widest leading-loose">
-                &copy; 2024 مركز طيبة للتدريب واللغات والاستشارات - العلمة. <br>
-                حي لعبيدي القديم - واتساب: <a href="https://wa.me/213541711924" class="phone-number text-taiba-orange">0541 711 924</a>
+                &copy; 2024 مركز طيبة للتدريب - العلمة. <br>
+                واتساب: <span class="phone-number text-taiba-orange">0541 711 924</span>
             </div>
         </div>
     </footer>
 
     <!-- Modals & Overlays -->
     <div id="statusOverlay">
-        <div class="bg-white p-12 rounded-[3.5rem] shadow-2xl text-center max-w-sm mx-4 reveal active">
-            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-inner">
+        <div class="bg-white p-12 rounded-[3.5rem] shadow-2xl text-center max-w-sm mx-4">
+            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6">
                 <i class="fas fa-check"></i>
             </div>
-            <h3 class="text-2xl font-black text-taiba-blue mb-2">وصل طلبك بنجاح!</h3>
-            <p class="text-slate-500 mb-8 font-medium italic">شكراً لثقتك بمركز طيبة، سيقوم فريقنا بالتواصل معك هاتفياً في أقرب وقت.</p>
-            <button onclick="closeStatus()" class="w-full bg-taiba-blue text-white py-4 rounded-2xl font-black shadow-lg active:scale-95 transition">موافق</button>
+            <h3 class="text-2xl font-black text-taiba-blue mb-2">تم استلام طلبك!</h3>
+            <p class="text-slate-500 mb-8 font-medium">سنتصل بك قريباً لتأكيد الحجز.</p>
+            <button onclick="closeStatus()" class="w-full bg-taiba-blue text-white py-4 rounded-2xl font-black">حسناً</button>
+        </div>
+    </div>
+
+    <!-- Admin Authentication Modal (بدل الـ prompt) -->
+    <div id="adminAuthModal">
+        <div class="bg-white p-10 rounded-[3rem] shadow-2xl w-full max-w-xs mx-4 text-center">
+            <h3 class="text-xl font-black text-taiba-blue mb-6">دخول الإدارة</h3>
+            <input type="password" id="adminPassInput" placeholder="كلمة المرور" class="w-full p-4 bg-slate-50 border rounded-2xl mb-4 outline-none focus:ring-2 ring-taiba-blue text-center">
+            <div id="adminPassError" class="text-red-500 text-xs mb-4 hidden">كلمة المرور غير صحيحة</div>
+            <button onclick="verifyAdminPassword()" class="w-full bg-taiba-blue text-white py-4 rounded-2xl font-bold mb-2">دخول</button>
+            <button onclick="closeAdminAuth()" class="text-slate-400 text-xs font-bold underline">إلغاء</button>
         </div>
     </div>
 
     <!-- Admin Dashboard -->
     <div id="adminDashboard" class="p-8">
         <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-10 border-b border-slate-200 pb-8 gap-4">
-                <div class="text-right">
-                    <h2 class="text-3xl font-black text-taiba-blue italic">سجل التسجيلات الجديدة</h2>
-                    <p class="text-slate-400 text-xs font-bold">مركز طيبة - العلمة</p>
-                </div>
-                <button onclick="closeAdmin()" class="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-2xl font-black shadow-lg transition">إغلاق لوحة التحكم</button>
+            <div class="flex justify-between items-center mb-10 border-b border-slate-200 pb-8">
+                <h2 class="text-3xl font-black text-taiba-blue italic">طلبات التسجيل الجديدة</h2>
+                <button onclick="closeAdmin()" class="bg-red-500 text-white px-8 py-3 rounded-2xl font-black shadow-lg transition hover:bg-red-600">خروج من اللوحة</button>
             </div>
-            <div class="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm">
+            <div class="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm overflow-x-auto">
                 <table class="w-full text-right border-collapse">
                     <thead class="bg-slate-50 border-b border-slate-100">
                         <tr class="text-slate-500 text-[11px] font-black uppercase tracking-widest">
-                            <th class="p-6">وقت التسجيل</th>
-                            <th class="p-6 border-r border-slate-100">الاسم الكامل</th>
-                            <th class="p-6 border-r border-slate-100">رقم الهاتف</th>
-                            <th class="p-6 border-r border-slate-100">الدورة المختارة</th>
-                            <th class="p-6 border-r border-slate-100">ملاحظات المتدرب</th>
+                            <th class="p-6">الوقت</th>
+                            <th class="p-6">الاسم</th>
+                            <th class="p-6">الهاتف</th>
+                            <th class="p-6">الدورة</th>
+                            <th class="p-6">ملاحظات</th>
                         </tr>
                     </thead>
                     <tbody id="registrationsTable"></tbody>
                 </table>
-                <div id="loadingAdmin" class="p-16 text-center font-black text-slate-300 italic">جاري جلب البيانات من السحابة...</div>
+                <div id="loadingAdmin" class="p-16 text-center font-black text-slate-300 italic">جاري التحميل...</div>
             </div>
         </div>
     </div>
 
-    <!-- Auth Modal -->
+    <!-- Student Auth Modal -->
     <div id="authModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
         <div class="absolute inset-0 bg-taiba-dark/95 backdrop-blur-md" onclick="toggleModal('authModal')"></div>
         <div class="bg-white w-full max-w-md rounded-[3rem] shadow-2xl relative z-10 p-12">
             <div class="text-center mb-8">
-                <div class="w-16 h-16 bg-taiba-blue rounded-2xl flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4 shadow-xl">ط</div>
+                <div class="w-16 h-16 bg-taiba-blue rounded-2xl flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4">ط</div>
                 <h3 class="text-2xl font-black text-taiba-blue italic">بوابة المتدربين</h3>
             </div>
             <form class="space-y-4">
-                <input type="text" placeholder="رقم التسجيل" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 ring-taiba-blue">
-                <input type="password" placeholder="كلمة المرور" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 ring-taiba-blue">
-                <button type="button" class="w-full bg-taiba-blue text-white py-4 rounded-2xl font-black shadow-lg hover:bg-taiba-orange transition">دخول</button>
+                <input type="text" placeholder="رقم التسجيل" class="w-full p-4 bg-slate-50 border rounded-2xl outline-none">
+                <input type="password" placeholder="كلمة المرور" class="w-full p-4 bg-slate-50 border rounded-2xl outline-none">
+                <button type="button" class="w-full bg-taiba-blue text-white py-4 rounded-2xl font-black">دخول</button>
             </form>
         </div>
     </div>
 
-    <!-- Logic -->
+    <!-- Script Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -439,10 +459,11 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'taiba-eleulma-app';
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'taiba-app-v1';
 
         let currentUser = null;
 
+        // Initialize Authentication
         const initAuth = async () => {
             try {
                 if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
@@ -450,22 +471,23 @@
                 } else {
                     await signInAnonymously(auth);
                 }
-            } catch (e) { console.error("Auth Error:", e); }
+            } catch (e) { console.error("Auth:", e); }
         };
 
         onAuthStateChanged(auth, (user) => { currentUser = user; });
         initAuth();
 
+        // Handle Registration
         const regForm = document.getElementById('registrationForm');
         const submitBtn = document.getElementById('submitRegBtn');
         const statusOverlay = document.getElementById('statusOverlay');
 
         regForm.onsubmit = async (e) => {
             e.preventDefault();
-            if (!currentUser) { alert("جاري تهيئة النظام، يرجى المحاولة بعد لحظات..."); return; }
+            if (!currentUser) return;
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> جاري إرسال البيانات...';
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
 
             const formData = {
                 name: document.getElementById('regName').value,
@@ -479,16 +501,14 @@
                 await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'registrations'), formData);
                 statusOverlay.style.display = 'flex';
                 regForm.reset();
-            } catch (e) { 
-                console.error(e);
-                alert("تعذر الإرسال، يرجى التأكد من اتصال الإنترنت."); 
-            }
+            } catch (e) { alert("حدث خطأ في الاتصال."); }
             finally { 
                 submitBtn.disabled = false;
                 submitBtn.innerText = 'تأكيد التسجيل';
             }
         };
 
+        // Load Data for Admin
         window.loadRegistrations = async () => {
             if (!currentUser) return;
             const table = document.getElementById('registrationsTable');
@@ -503,30 +523,28 @@
                 querySnapshot.forEach(doc => docs.push(doc.data()));
                 docs.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
 
-                if(docs.length === 0) {
-                    loader.innerText = "لا توجد طلبات تسجيل حتى الآن.";
+                if (docs.length === 0) {
+                    loader.innerText = "لا توجد تسجيلات حتى الآن.";
                     loader.style.display = 'block';
                     return;
                 }
 
                 docs.forEach(data => {
-                    const date = data.timestamp ? new Date(data.timestamp.seconds * 1000).toLocaleString('ar-DZ') : 'غير محدد';
+                    const date = data.timestamp ? new Date(data.timestamp.seconds * 1000).toLocaleString('ar-DZ') : '-';
                     table.innerHTML += `
-                        <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition text-right">
+                        <tr class="border-b hover:bg-slate-50 transition text-right">
                             <td class="p-4 text-[10px] text-slate-400 font-mono" dir="ltr">${date}</td>
-                            <td class="p-4 font-black text-taiba-blue border-r border-slate-50">${data.name}</td>
-                            <td class="p-4 phone-number font-bold border-r border-slate-50">${data.phone}</td>
-                            <td class="p-4 border-r border-slate-50"><span class="bg-taiba-orange/10 text-taiba-orange px-3 py-1 rounded-full text-[10px] font-black">${data.course}</span></td>
-                            <td class="p-4 text-xs text-slate-400 italic border-r border-slate-50">${data.note || '-'}</td>
+                            <td class="p-4 font-black text-taiba-blue">${data.name}</td>
+                            <td class="p-4 font-bold phone-number">${data.phone}</td>
+                            <td class="p-4"><span class="bg-taiba-orange/10 text-taiba-orange px-3 py-1 rounded-full text-[10px] font-black">${data.course}</span></td>
+                            <td class="p-4 text-xs text-slate-400 italic">${data.note || '-'}</td>
                         </tr>
                     `;
                 });
-            } catch (e) { 
-                console.error(e);
-                loader.innerText = "حدث خطأ أثناء جلب البيانات."; 
-            }
+            } catch (e) { loader.innerText = "فشل جلب البيانات."; }
         };
 
+        // Global UI Toggles
         window.closeStatus = () => { statusOverlay.style.display = 'none'; };
         window.toggleModal = (id) => {
             const modal = document.getElementById(id);
@@ -534,15 +552,30 @@
             modal.classList.toggle('flex');
             document.body.style.overflow = modal.classList.contains('hidden') ? 'auto' : 'hidden';
         };
-        window.accessAdmin = () => {
-            if (prompt("يرجى إدخال كلمة مرور المسؤول:") === "taiba2024") {
+
+        // Admin Auth Toggles
+        window.openAdminAuth = () => {
+            document.getElementById('adminAuthModal').style.display = 'flex';
+            document.getElementById('adminPassInput').value = '';
+            document.getElementById('adminPassError').classList.add('hidden');
+        };
+
+        window.closeAdminAuth = () => {
+            document.getElementById('adminAuthModal').style.display = 'none';
+        };
+
+        window.verifyAdminPassword = () => {
+            const pass = document.getElementById('adminPassInput').value;
+            if (pass === "taiba2024") {
+                document.getElementById('adminAuthModal').style.display = 'none';
                 document.getElementById('adminDashboard').style.display = 'block';
                 document.body.style.overflow = 'hidden';
                 window.loadRegistrations();
             } else {
-                alert("عذراً، كلمة المرور غير صحيحة.");
+                document.getElementById('adminPassError').classList.remove('hidden');
             }
         };
+
         window.closeAdmin = () => { 
             document.getElementById('adminDashboard').style.display = 'none'; 
             document.body.style.overflow = 'auto';
@@ -563,7 +596,7 @@
         window.addEventListener("scroll", reveal);
         window.onload = () => {
             reveal();
-            // Smooth scroll
+            // Smooth scroll links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     const targetId = this.getAttribute('href');
