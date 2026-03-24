@@ -373,41 +373,41 @@
                             <select id="regCourse" required class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none text-slate-600 font-bold appearance-none">
                                 <option value="">اختر التخصص التدريبي...</option>
                                 <optgroup label="اللغات الأجنبية">
-                                    <option>اللغة الإنجليزية</option>
-                                    <option>اللغة الفرنسية</option>
-                                    <option>اللغة الألمانية</option>
+                                    <option value="اللغة الإنجليزية">اللغة الإنجليزية</option>
+                                    <option value="اللغة الفرنسية">اللغة الفرنسية</option>
+                                    <option value="اللغة الألمانية">اللغة الألمانية</option>
                                 </optgroup>
                                 <optgroup label="التكوين شبه الطبي">
-                                    <option>مساعد طبيب</option>
-                                    <option>مساعد صيدلي</option>
-                                    <option>السكرتارية الطبية</option>
+                                    <option value="مساعد طبيب">مساعد طبيب</option>
+                                    <option value="مساعد صيدلي">مساعد صيدلي</option>
+                                    <option value="السكرتارية الطبية">السكرتارية الطبية</option>
                                 </optgroup>
                                 <optgroup label="الطب التكميلي والعلاجي">
-                                    <option>الحجامة الطبية والتجميلية</option>
-                                    <option>الإسعافات الأولية</option>
-                                    <option>العناية بالبشرة (Esthétique)</option>
+                                    <option value="الحجامة الطبية والتجميلية">الحجامة الطبية والتجميلية</option>
+                                    <option value="الإسعافات الأولية">الإسعافات الأولية</option>
+                                    <option value="العناية بالبشرة (Esthétique)">العناية بالبشرة (Esthétique)</option>
                                 </optgroup>
                                 <optgroup label="التكنولوجيا والبرمجة">
-                                    <option>الذكاء الاصطناعي (AI)</option>
-                                    <option>البرمجة وتطوير المواقع</option>
-                                    <option>الإعلام الآلي المتقدم</option>
+                                    <option value="الذكاء الاصطناعي (AI)">الذكاء الاصطناعي (AI)</option>
+                                    <option value="البرمجة وتطوير المواقع">البرمجة وتطوير المواقع</option>
+                                    <option value="الإعلام الآلي المتقدم">الإعلام الآلي المتقدم</option>
                                 </optgroup>
                                 <optgroup label="الإلكترونيك والروبوتيك">
-                                    <option>الروبوتيك للأطفال</option>
-                                    <option>الإلكترونيك الصناعي</option>
-                                    <option>تركيب كاميرات المراقبة</option>
+                                    <option value="الروبوتيك للأطفال">الروبوتيك للأطفال</option>
+                                    <option value="الإلكترونيك الصناعي">الإلكترونيك الصناعي</option>
+                                    <option value="تركيب كاميرات المراقبة">تركيب كاميرات المراقبة</option>
                                 </optgroup>
                                 <optgroup label="الإدارة والمحاسبة">
-                                    <option>المحاسبة (PC Comptabilité)</option>
-                                    <option>تسيير الموارد البشرية</option>
+                                    <option value="المحاسبة (PC Comptabilité)">المحاسبة (PC Comptabilité)</option>
+                                    <option value="تسيير الموارد البشرية">تسيير الموارد البشرية</option>
                                 </optgroup>
                                 <optgroup label="الصناعات الحرفية">
-                                    <option>صناعة العطور الاحترافية</option>
-                                    <option>صناعة الصابون الطبيعي</option>
+                                    <option value="صناعة العطور الاحترافية">صناعة العطور الاحترافية</option>
+                                    <option value="صناعة الصابون الطبيعي">صناعة الصابون الطبيعي</option>
                                 </optgroup>
                                 <optgroup label="فنون الطبخ والحلويات">
-                                    <option>الحلويات التقليدية والعصرية</option>
-                                    <option>صناعة الكيك (Cake Design)</option>
+                                    <option value="الحلويات التقليدية والعصرية">الحلويات التقليدية والعصرية</option>
+                                    <option value="صناعة الكيك (Cake Design)">صناعة الكيك (Cake Design)</option>
                                 </optgroup>
                             </select>
                             <textarea id="regNote" placeholder="أي ملاحظات؟" rows="2" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 ring-taiba-blue transition"></textarea>
@@ -467,10 +467,59 @@
     <!-- Admin Dashboard -->
     <div id="adminDashboard" class="p-8">
         <div class="container mx-auto">
-            <div class="flex justify-between items-center mb-10 border-b border-slate-200 pb-8">
-                <h2 class="text-3xl font-black text-taiba-blue italic">طلبات التسجيل الجديدة</h2>
-                <button onclick="closeAdmin()" class="bg-red-500 text-white px-8 py-3 rounded-2xl font-black shadow-lg transition hover:bg-red-600">خروج من اللوحة</button>
+            <div class="flex flex-col md:flex-row justify-between items-center mb-10 border-b border-slate-200 pb-8 gap-4">
+                <div class="text-right">
+                    <h2 class="text-3xl font-black text-taiba-blue italic">سجل التسجيلات الجديدة</h2>
+                    <p class="text-slate-400 text-xs font-bold">مركز طيبة - العلمة</p>
+                </div>
+                
+                <div class="flex flex-wrap gap-4 items-center justify-end">
+                    <!-- قائمة تصفية الدورات (الفلتر) -->
+                    <select id="adminCourseFilter" onchange="filterRegistrations()" class="p-3 bg-white border border-slate-200 rounded-xl outline-none focus:ring-2 ring-taiba-blue text-sm font-bold text-slate-600 shadow-sm cursor-pointer">
+                        <option value="all">عرض جميع الدورات</option>
+                        <optgroup label="اللغات الأجنبية">
+                            <option value="اللغة الإنجليزية">اللغة الإنجليزية</option>
+                            <option value="اللغة الفرنسية">اللغة الفرنسية</option>
+                            <option value="اللغة الألمانية">اللغة الألمانية</option>
+                        </optgroup>
+                        <optgroup label="التكوين شبه الطبي">
+                            <option value="مساعد طبيب">مساعد طبيب</option>
+                            <option value="مساعد صيدلي">مساعد صيدلي</option>
+                            <option value="السكرتارية الطبية">السكرتارية الطبية</option>
+                        </optgroup>
+                        <optgroup label="الطب التكميلي والعلاجي">
+                            <option value="الحجامة الطبية والتجميلية">الحجامة الطبية والتجميلية</option>
+                            <option value="الإسعافات الأولية">الإسعافات الأولية</option>
+                            <option value="العناية بالبشرة (Esthétique)">العناية بالبشرة (Esthétique)</option>
+                        </optgroup>
+                        <optgroup label="التكنولوجيا والبرمجة">
+                            <option value="الذكاء الاصطناعي (AI)">الذكاء الاصطناعي (AI)</option>
+                            <option value="البرمجة وتطوير المواقع">البرمجة وتطوير المواقع</option>
+                            <option value="الإعلام الآلي المتقدم">الإعلام الآلي المتقدم</option>
+                        </optgroup>
+                        <optgroup label="الإلكترونيك والروبوتيك">
+                            <option value="الروبوتيك للأطفال">الروبوتيك للأطفال</option>
+                            <option value="الإلكترونيك الصناعي">الإلكترونيك الصناعي</option>
+                            <option value="تركيب كاميرات المراقبة">تركيب كاميرات المراقبة</option>
+                        </optgroup>
+                        <optgroup label="الإدارة والمحاسبة">
+                            <option value="المحاسبة (PC Comptabilité)">المحاسبة (PC Comptabilité)</option>
+                            <option value="تسيير الموارد البشرية">تسيير الموارد البشرية</option>
+                        </optgroup>
+                        <optgroup label="الصناعات الحرفية">
+                            <option value="صناعة العطور الاحترافية">صناعة العطور الاحترافية</option>
+                            <option value="صناعة الصابون الطبيعي">صناعة الصابون الطبيعي</option>
+                        </optgroup>
+                        <optgroup label="فنون الطبخ والحلويات">
+                            <option value="الحلويات التقليدية والعصرية">الحلويات التقليدية والعصرية</option>
+                            <option value="صناعة الكيك (Cake Design)">صناعة الكيك (Cake Design)</option>
+                        </optgroup>
+                    </select>
+
+                    <button onclick="closeAdmin()" class="bg-red-500 text-white px-8 py-3 rounded-2xl font-black shadow-lg transition hover:bg-red-600">إغلاق اللوحة</button>
+                </div>
             </div>
+            
             <div class="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm overflow-x-auto">
                 <table class="w-full text-right border-collapse">
                     <thead class="bg-slate-50 border-b border-slate-100">
@@ -550,8 +599,9 @@
 
         let db, auth, appId;
         let currentUser = null;
+        let allRegistrations = []; // مصفوفة لتخزين جميع التسجيلات محلياً من أجل الفرز
 
-        // 1. ضع إعدادات مشروع Firebase الخاص بك هنا ليعمل الموقع على Netlify (اختياري)
+        // 1. إعدادات مشروع Firebase الخاص بك
         const myFirebaseConfig = {
             apiKey: "AIzaSyAMUah0azJkDq7HlgAULLZjbYeyynPjdJQ",
             authDomain: "taiba-center-eleulma.firebaseapp.com",
@@ -610,7 +660,6 @@
                 note: document.getElementById('regNote').value,
             };
 
-            // الحفظ إذا كانت قاعدة البيانات متصلة، وإلا إظهار النجاح شكلياً للمنصات الخارجية
             if (db && currentUser) {
                 try {
                     formData.timestamp = serverTimestamp();
@@ -619,7 +668,6 @@
                     regForm.reset();
                 } catch (e) { alert("حدث خطأ في الاتصال بالسحابة."); }
             } else {
-                // وضع استعراضي (يعمل عند رفع الموقع كملف HTML عادي بدون سيرفر)
                 setTimeout(() => {
                     statusOverlay.style.display = 'flex';
                     regForm.reset();
@@ -630,43 +678,77 @@
             submitBtn.innerText = 'تأكيد التسجيل';
         };
 
-        window.loadRegistrations = async () => {
+        // دالة الفرز وإعادة رسم الجدول
+        window.renderTable = (courseFilter) => {
             const table = document.getElementById('registrationsTable');
+            table.innerHTML = '';
+
+            // تصفية البيانات حسب الدورة المختارة
+            const filteredDocs = courseFilter === 'all' 
+                ? allRegistrations 
+                : allRegistrations.filter(doc => doc.course === courseFilter);
+
+            if (filteredDocs.length === 0) {
+                table.innerHTML = `<tr><td colspan="5" class="p-16 text-center text-slate-500 font-bold">لا توجد تسجيلات مطابقة لهذا الاختيار.</td></tr>`;
+                return;
+            }
+
+            filteredDocs.forEach(data => {
+                const date = data.timestamp ? new Date(data.timestamp.seconds * 1000).toLocaleString('ar-DZ') : '-';
+                table.innerHTML += `
+                    <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition text-right">
+                        <td class="p-4 text-[10px] text-slate-400 font-mono" dir="ltr">${date}</td>
+                        <td class="p-4 font-black text-taiba-blue border-r border-slate-50">${data.name}</td>
+                        <td class="p-4 font-bold phone-number border-r border-slate-50">${data.phone}</td>
+                        <td class="p-4 border-r border-slate-50"><span class="bg-taiba-orange/10 text-taiba-orange px-3 py-1 rounded-full text-[10px] font-black">${data.course}</span></td>
+                        <td class="p-4 text-xs text-slate-400 italic border-r border-slate-50">${data.note || '-'}</td>
+                    </tr>
+                `;
+            });
+        };
+
+        // دالة يتم استدعاؤها عند تغيير القائمة المنسدلة
+        window.filterRegistrations = () => {
+            const filterValue = document.getElementById('adminCourseFilter').value;
+            window.renderTable(filterValue);
+        };
+
+        // تحميل البيانات من السيرفر (يتم مرة واحدة عند فتح اللوحة)
+        window.loadRegistrations = async () => {
             const loader = document.getElementById('loadingAdmin');
+            const table = document.getElementById('registrationsTable');
+            
+            // إعادة ضبط الفلتر إلى "الجميع" عند فتح اللوحة
+            document.getElementById('adminCourseFilter').value = 'all';
+            
             table.innerHTML = '';
             loader.style.display = 'block';
 
             if (!db || (!currentUser && typeof __firebase_config === 'undefined')) {
                 loader.style.display = 'none';
-                table.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-slate-500 font-bold leading-loose">عذراً، لوحة الإدارة هذه غير متصلة بقاعدة بيانات.<br>لربطها، يرجى قراءة (الخيار الثاني) في رسالة الشات أو تغيير النموذج ليرسل البيانات للإيميل مباشرة.</td></tr>';
+                table.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-slate-500 font-bold leading-loose">لوحة الإدارة غير متصلة بقاعدة البيانات.</td></tr>';
                 return;
             }
 
             try {
                 const querySnapshot = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'registrations'));
                 loader.style.display = 'none';
-                const docs = [];
-                querySnapshot.forEach(doc => docs.push(doc.data()));
-                docs.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
+                
+                allRegistrations = []; // تفريغ المصفوفة القديمة
+                querySnapshot.forEach(doc => allRegistrations.push(doc.data()));
+                
+                // ترتيب من الأحدث للأقدم
+                allRegistrations.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
 
-                if (docs.length === 0) {
+                if (allRegistrations.length === 0) {
                     loader.innerText = "لا توجد تسجيلات حتى الآن.";
                     loader.style.display = 'block';
                     return;
                 }
 
-                docs.forEach(data => {
-                    const date = data.timestamp ? new Date(data.timestamp.seconds * 1000).toLocaleString('ar-DZ') : '-';
-                    table.innerHTML += `
-                        <tr class="border-b hover:bg-slate-50 transition text-right">
-                            <td class="p-4 text-[10px] text-slate-400 font-mono" dir="ltr">${date}</td>
-                            <td class="p-4 font-black text-taiba-blue border-r">${data.name}</td>
-                            <td class="p-4 font-bold phone-number border-r">${data.phone}</td>
-                            <td class="p-4 border-r"><span class="bg-taiba-orange/10 text-taiba-orange px-3 py-1 rounded-full text-[10px] font-black">${data.course}</span></td>
-                            <td class="p-4 text-xs text-slate-400 italic border-r">${data.note || '-'}</td>
-                        </tr>
-                    `;
-                });
+                // عرض كل البيانات مبدئياً
+                window.renderTable('all');
+
             } catch (e) { loader.innerText = "فشل جلب البيانات."; }
         };
     </script>
