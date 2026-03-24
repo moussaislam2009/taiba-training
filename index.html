@@ -61,7 +61,7 @@
             display: inline-block;
         }
 
-        #statusOverlay, #adminAuthModal {
+        #statusOverlay, #adminAuthModal, #studentPortalOverlay {
             display: none;
             position: fixed;
             inset: 0;
@@ -358,6 +358,16 @@
                                 <p class="text-slate-500 text-sm underline font-bold">taiba.eleulma@gmail.com</p>
                             </div>
                         </div>
+
+                        <div class="flex flex-row-reverse gap-5">
+                            <div class="w-12 h-12 bg-white text-taiba-orange rounded-xl shadow-md flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-slate-800">ساعات العمل</h4>
+                                <p class="text-slate-500 text-sm font-bold">كامل أيام الأسبوع: 08:00 صباحاً - 08:00 مساءً</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -411,6 +421,12 @@
                                 </optgroup>
                             </select>
                             <textarea id="regNote" placeholder="أي ملاحظات؟" rows="2" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 ring-taiba-blue transition"></textarea>
+                            <div class="flex items-start gap-3 mt-2 px-2">
+                                <input type="checkbox" id="agreeRules" required class="mt-1 w-5 h-5 accent-taiba-orange rounded border-slate-300 cursor-pointer">
+                                <label for="agreeRules" class="text-sm text-slate-600 font-bold cursor-pointer">
+                                    قرأت وأوافق على <button type="button" onclick="toggleModal('rulesModal')" class="text-taiba-blue underline hover:text-taiba-orange transition">القانون الداخلي للمركز</button>
+                                </label>
+                            </div>
                             <button type="submit" id="submitRegBtn" class="w-full bg-taiba-blue text-white py-5 rounded-2xl font-black text-xl hover:bg-taiba-orange transition-all shadow-xl">تأكيد التسجيل</button>
                         </form>
                     </div>
@@ -431,6 +447,7 @@
                 <a href="#" class="hover:text-taiba-orange transition">الرئيسية</a>
                 <a href="#about" class="hover:text-taiba-orange transition">عن المركز</a>
                 <a href="#courses" class="hover:text-taiba-orange transition">الدورات</a>
+                <button onclick="toggleModal('rulesModal')" class="hover:text-taiba-orange transition">القانون الداخلي</button>
                 <button onclick="openAdminAuth()" class="opacity-40 hover:opacity-100 transition text-[10px] uppercase tracking-tighter text-taiba-orange bg-taiba-orange/10 px-3 py-1 rounded-full">دخول الإدارة</button>
             </div>
 
@@ -440,6 +457,52 @@
             </div>
         </div>
     </footer>
+
+    <!-- القانون الداخلي Modal -->
+    <div id="rulesModal" class="fixed inset-0 z-[250] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-taiba-dark/95 backdrop-blur-md" onclick="toggleModal('rulesModal')"></div>
+        <div class="bg-white w-full max-w-3xl rounded-[2.5rem] shadow-2xl relative z-10 flex flex-col max-h-[90vh] reveal active">
+            <div class="p-8 border-b border-slate-100 flex justify-between items-center shrink-0">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-balance-scale text-taiba-orange text-2xl"></i>
+                    <h3 class="text-2xl font-black text-taiba-blue italic">القانون الداخلي لمركز طيبة</h3>
+                </div>
+                <button onclick="toggleModal('rulesModal')" class="text-slate-400 hover:text-red-500 transition text-3xl font-black">&times;</button>
+            </div>
+            <div class="p-8 overflow-y-auto space-y-8 text-slate-600 text-sm leading-loose custom-scrollbar">
+                <div class="space-y-2">
+                    <h4 class="text-lg font-black text-taiba-blue flex items-center gap-2"><span class="w-2 h-2 bg-taiba-orange rounded-full"></span> المادة 01: التسجيل والمستحقات المالية</h4>
+                    <p class="pr-4">1. يعتبر التسجيل نهائياً بعد دفع حقوق التسجيل المتفق عليها (دفعة واحدة أو بالتقسيط حسب النظام المعمول به في المركز).</p>
+                    <p class="pr-4">2. حقوق التسجيل الأولي غير قابلة للاسترداد في حال انسحاب المتدرب لأسباب شخصية بعد انطلاق الدورة.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-lg font-black text-taiba-blue flex items-center gap-2"><span class="w-2 h-2 bg-taiba-orange rounded-full"></span> المادة 02: الحضور والمواظبة</h4>
+                    <p class="pr-4">1. يلتزم المتدرب بحضور جميع الحصص المبرمجة في أوقاتها المحددة.</p>
+                    <p class="pr-4">2. الغياب المتكرر بدون مبرر شرعي قد يعرض المتدرب للحرمان من الحصول على الشهادة النهائية.</p>
+                    <p class="pr-4">3. يمنع التأخر عن موعد بدء الحصة، وللأستاذ أو الإدارة حق منع المتأخرين من الدخول تفادياً للتشويش.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-lg font-black text-taiba-blue flex items-center gap-2"><span class="w-2 h-2 bg-taiba-orange rounded-full"></span> المادة 03: السلوك والانضباط</h4>
+                    <p class="pr-4">1. يجب الالتزام بالاحترام المتبادل بين المتدربين، الأساتذة، والطاقم الإداري للمركز.</p>
+                    <p class="pr-4">2. يمنع منعاً باتاً التدخين داخل قاعات التدريب أو أروقة المركز.</p>
+                    <p class="pr-4">3. يرجى وضع الهواتف النقالة في الوضع الصامت أثناء سير الحصص التدريبية.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-lg font-black text-taiba-blue flex items-center gap-2"><span class="w-2 h-2 bg-taiba-orange rounded-full"></span> المادة 04: الحفاظ على العتاد والممتلكات</h4>
+                    <p class="pr-4">1. يضع المركز تحت تصرف المتدربين أجهزة ومعدات (حواسيب، معدات طبية، أدوات طبخ... الخ) لغرض التطبيق.</p>
+                    <p class="pr-4">2. يتحمل المتدرب المسؤولية الكاملة عن أي إتلاف أو تخريب متعمد للأجهزة، ويُلزم بالتعويض المادي.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-lg font-black text-taiba-blue flex items-center gap-2"><span class="w-2 h-2 bg-taiba-orange rounded-full"></span> المادة 05: تسليم الشهادات</h4>
+                    <p class="pr-4">1. تُمنح الشهادة التكوينية فقط للمتدربين الذين أتموا البرنامج بنجاح، واجتازوا التقييمات (إن وجدت).</p>
+                    <p class="pr-4">2. يشترط تسوية كافة المستحقات المالية المتبقية قبل استلام الشهادة النهائية.</p>
+                </div>
+            </div>
+            <div class="p-6 border-t border-slate-100 bg-slate-50 rounded-b-[2.5rem] shrink-0 text-center">
+                <button onclick="toggleModal('rulesModal')" class="bg-taiba-blue text-white px-10 py-3 rounded-xl font-black hover:bg-taiba-orange transition shadow-lg">قرأت وأوافق</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Modals & Overlays -->
     <div id="statusOverlay">
@@ -453,13 +516,25 @@
         </div>
     </div>
 
+    <!-- Student Dashboard Coming Soon Overlay -->
+    <div id="studentPortalOverlay">
+        <div class="bg-white p-12 rounded-[3.5rem] shadow-2xl text-center max-w-md mx-4 reveal active">
+            <div class="w-20 h-20 bg-taiba-orange/20 text-taiba-orange rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-inner">
+                <i class="fas fa-tools"></i>
+            </div>
+            <h3 class="text-2xl font-black text-taiba-blue mb-2">فضاء المتدربين</h3>
+            <p class="text-slate-500 mb-8 font-medium leading-relaxed">أهلاً بك! المنصة التعليمية قيد التطوير حالياً. سيتم إطلاقها قريباً لتتمكن من متابعة دروسك ونتائجك بسهولة.</p>
+            <button onclick="closeStudentPortal()" class="w-full bg-taiba-blue hover:bg-taiba-orange text-white py-4 rounded-2xl font-black shadow-lg active:scale-95 transition">الرجوع للموقع</button>
+        </div>
+    </div>
+
     <!-- Admin Authentication Modal -->
     <div id="adminAuthModal">
         <div class="bg-white p-10 rounded-[3rem] shadow-2xl w-full max-w-xs mx-4 text-center">
             <h3 class="text-xl font-black text-taiba-blue mb-6">دخول الإدارة</h3>
             <input type="password" id="adminPassInput" placeholder="كلمة المرور" class="w-full p-4 bg-slate-50 border rounded-2xl mb-4 outline-none focus:ring-2 ring-taiba-blue text-center">
             <div id="adminPassError" class="text-red-500 text-xs mb-4 hidden">كلمة المرور غير صحيحة</div>
-            <button onclick="verifyAdminPassword()" class="w-full bg-taiba-blue text-white py-4 rounded-2xl font-bold mb-2">دخول</button>
+            <button id="adminLoginBtn" onclick="verifyAdminPassword()" class="w-full bg-taiba-blue text-white py-4 rounded-2xl font-bold mb-2">دخول</button>
             <button onclick="closeAdminAuth()" class="text-slate-400 text-xs font-bold underline mt-2 block w-full">إلغاء</button>
         </div>
     </div>
@@ -528,14 +603,14 @@
                             <th class="p-6">الوقت</th>
                             <th class="p-6">الاسم</th>
                             <th class="p-6">الهاتف</th>
-    <!-- Admin Authentication Modal -->
-    <div id="adminAuthModal">
-        <div class="bg-white p-10 rounded-[3rem] shadow-2xl w-full max-w-xs mx-4 text-center">
-            <h3 class="text-xl font-black text-taiba-blue mb-6">دخول الإدارة</h3>
-            <input type="password" id="adminPassInput" placeholder="كلمة المرور" class="w-full p-4 bg-slate-50 border rounded-2xl mb-4 outline-none focus:ring-2 ring-taiba-blue text-center">
-            <div id="adminPassError" class="text-red-500 text-xs mb-4 hidden">كلمة المرور غير صحيحة</div>
-            <button id="adminLoginBtn" onclick="verifyAdminPassword()" class="w-full bg-taiba-blue text-white py-4 rounded-2xl font-bold mb-2">دخول</button>
-            <button onclick="closeAdminAuth()" class="text-slate-400 text-xs font-bold underline mt-2 block w-full">إلغاء</button>
+                            <th class="p-6">الدورة</th>
+                            <th class="p-6">ملاحظات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="registrationsTable"></tbody>
+                </table>
+                <div id="loadingAdmin" class="p-16 text-center font-black text-slate-300 italic">جاري التحميل...</div>
+            </div>
         </div>
     </div>
 
@@ -548,9 +623,9 @@
                 <h3 class="text-2xl font-black text-taiba-blue italic">بوابة المتدربين</h3>
             </div>
             <form class="space-y-4">
-                <input type="text" placeholder="رقم التسجيل" class="w-full p-4 bg-slate-50 border rounded-2xl outline-none">
+                <input type="text" placeholder="رقم التسجيل أو الإيميل" class="w-full p-4 bg-slate-50 border rounded-2xl outline-none">
                 <input type="password" placeholder="كلمة المرور" class="w-full p-4 bg-slate-50 border rounded-2xl outline-none">
-                <button type="button" class="w-full bg-taiba-blue text-white py-4 rounded-2xl font-black">دخول</button>
+                <button type="button" onclick="handleStudentLogin()" class="w-full bg-taiba-blue text-white py-4 rounded-2xl font-black shadow-lg hover:bg-taiba-orange transition">دخول</button>
             </form>
         </div>
     </div>
@@ -563,6 +638,20 @@
             modal.classList.toggle('hidden');
             modal.classList.toggle('flex');
             document.body.style.overflow = modal.classList.contains('hidden') ? 'auto' : 'hidden';
+        };
+
+        // دالة الدخول الوهمي للطالب
+        window.handleStudentLogin = () => {
+            // إخفاء نافذة الدخول
+            document.getElementById('authModal').style.display = 'none';
+            // إظهار رسالة قيد التطوير
+            document.getElementById('studentPortalOverlay').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeStudentPortal = () => {
+            document.getElementById('studentPortalOverlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
         };
 
         // دالة مساعدة لتشفير كلمة المرور المدخلة (SHA-256)
