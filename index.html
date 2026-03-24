@@ -474,6 +474,7 @@
                 </div>
                 
                 <div class="flex flex-wrap gap-4 items-center justify-end">
+                    <button id="changeSecPassBtn" onclick="changeSecPassword()" class="bg-taiba-orange text-white px-6 py-3 rounded-2xl font-bold shadow-sm transition hover:bg-yellow-500 text-sm" style="display: none;">تغيير كلمة مرور السكرتارية</button>
                     <!-- قائمة تصفية الدورات (الفلتر) -->
                     <select id="adminCourseFilter" onchange="filterRegistrations()" class="p-3 bg-white border border-slate-200 rounded-xl outline-none focus:ring-2 ring-taiba-blue text-sm font-bold text-slate-600 shadow-sm cursor-pointer">
                         <option value="all">عرض جميع الدورات</option>
@@ -527,14 +528,14 @@
                             <th class="p-6">الوقت</th>
                             <th class="p-6">الاسم</th>
                             <th class="p-6">الهاتف</th>
-                            <th class="p-6">الدورة</th>
-                            <th class="p-6">ملاحظات</th>
-                        </tr>
-                    </thead>
-                    <tbody id="registrationsTable"></tbody>
-                </table>
-                <div id="loadingAdmin" class="p-16 text-center font-black text-slate-300 italic">جاري التحميل...</div>
-            </div>
+    <!-- Admin Authentication Modal -->
+    <div id="adminAuthModal">
+        <div class="bg-white p-10 rounded-[3rem] shadow-2xl w-full max-w-xs mx-4 text-center">
+            <h3 class="text-xl font-black text-taiba-blue mb-6">دخول الإدارة</h3>
+            <input type="password" id="adminPassInput" placeholder="كلمة المرور" class="w-full p-4 bg-slate-50 border rounded-2xl mb-4 outline-none focus:ring-2 ring-taiba-blue text-center">
+            <div id="adminPassError" class="text-red-500 text-xs mb-4 hidden">كلمة المرور غير صحيحة</div>
+            <button id="adminLoginBtn" onclick="verifyAdminPassword()" class="w-full bg-taiba-blue text-white py-4 rounded-2xl font-bold mb-2">دخول</button>
+            <button onclick="closeAdminAuth()" class="text-slate-400 text-xs font-bold underline mt-2 block w-full">إلغاء</button>
         </div>
     </div>
 
@@ -564,6 +565,14 @@
             document.body.style.overflow = modal.classList.contains('hidden') ? 'auto' : 'hidden';
         };
 
+        // دالة مساعدة لتشفير كلمة المرور المدخلة (SHA-256)
+        window.hashString = async function(str) {
+            const buffer = new TextEncoder().encode(str);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        };
+
         // Admin Auth Flow
         window.openAdminAuth = () => {
             document.getElementById('adminAuthModal').style.display = 'flex';
@@ -572,18 +581,6 @@
         };
 
         window.closeAdminAuth = () => { document.getElementById('adminAuthModal').style.display = 'none'; };
-
-        window.verifyAdminPassword = () => {
-            const pass = document.getElementById('adminPassInput').value;
-            if (pass === "taiba2024") {
-                document.getElementById('adminAuthModal').style.display = 'none';
-                document.getElementById('adminDashboard').style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                if(window.loadRegistrations) window.loadRegistrations(); // Call Firebase func if loaded
-            } else {
-                document.getElementById('adminPassError').classList.remove('hidden');
-            }
-        };
 
         window.closeAdmin = () => { 
             document.getElementById('adminDashboard').style.display = 'none'; 
@@ -595,7 +592,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, serverTimestamp, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         let db, auth, appId;
         let currentUser = null;
@@ -711,6 +708,78 @@
         window.filterRegistrations = () => {
             const filterValue = document.getElementById('adminCourseFilter').value;
             window.renderTable(filterValue);
+        };
+
+        // التحقق من صلاحيات المدير والسكرتارية
+        window.verifyAdminPassword = async () => {
+            const pass = document.getElementById('adminPassInput').value;
+            if (!pass) return;
+
+            const btn = document.getElementById('adminLoginBtn');
+            btn.disabled = true;
+            btn.innerText = 'جاري التحقق...';
+
+            const hashedInput = await window.hashString(pass);
+            const adminHash = "1a8b1399de976e6cc1de7e7195c110cdfb90ee4cd1c4021262d2217cdaec1ba1"; // taiba2024
+            
+            let isAdmin = (hashedInput === adminHash);
+            let isSec = false;
+
+            // جلب كلمة مرور السكرتارية من قاعدة البيانات
+            if (!isAdmin && db) {
+                try {
+                    const settingsRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'auth_config');
+                    const snap = await getDoc(settingsRef);
+                    let secHash = "813fbf61a6b0c1694fde0db004f141b7147b2c6a0c5cbf6530f2c417ef0ef007"; // الافتراضي: sec2024
+                    if (snap.exists() && snap.data().secretariat_hash) {
+                        secHash = snap.data().secretariat_hash;
+                    }
+                    if (hashedInput === secHash) {
+                        isSec = true;
+                    }
+                } catch (e) {
+                    const defaultSecHash = "813fbf61a6b0c1694fde0db004f141b7147b2c6a0c5cbf6530f2c417ef0ef007";
+                    if (hashedInput === defaultSecHash) isSec = true;
+                }
+            } else if (!isAdmin) {
+                const defaultSecHash = "813fbf61a6b0c1694fde0db004f141b7147b2c6a0c5cbf6530f2c417ef0ef007";
+                if (hashedInput === defaultSecHash) isSec = true;
+            }
+
+            btn.disabled = false;
+            btn.innerText = 'دخول';
+
+            if (isAdmin || isSec) {
+                document.getElementById('adminAuthModal').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                document.getElementById('adminPassError').classList.add('hidden');
+                
+                // إظهار أو إخفاء زر تغيير باسورد السكرتارية (يظهر للمدير فقط)
+                const changeBtn = document.getElementById('changeSecPassBtn');
+                if(changeBtn) changeBtn.style.display = isAdmin ? 'inline-block' : 'none';
+
+                if(window.loadRegistrations) window.loadRegistrations();
+            } else {
+                document.getElementById('adminPassError').classList.remove('hidden');
+            }
+        };
+
+        // دالة تغيير كلمة مرور السكرتارية (صلاحية المدير)
+        window.changeSecPassword = async () => {
+            const newPass = prompt("أدخل كلمة المرور الجديدة الخاصة بالسكرتارية:");
+            if (!newPass) return;
+            if (newPass.length < 4) { alert("كلمة المرور قصيرة جداً!"); return; }
+
+            try {
+                const hashedNewPass = await window.hashString(newPass);
+                const settingsRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'auth_config');
+                await setDoc(settingsRef, { secretariat_hash: hashedNewPass }, { merge: true });
+                alert("تم تغيير كلمة مرور السكرتارية بنجاح! يمكنهم الدخول بها الآن.");
+            } catch (e) {
+                console.error(e);
+                alert("حدث خطأ أثناء الاتصال بقاعدة البيانات. تأكد من أنك تعمل على نسخة مدعومة بقاعدة بيانات فايربيس.");
+            }
         };
 
         // تحميل البيانات من السيرفر (يتم مرة واحدة عند فتح اللوحة)
